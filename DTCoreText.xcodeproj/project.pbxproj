@@ -616,13 +616,6 @@
 			remoteGlobalIDString = A7E889A416A9B190009EF0DF;
 			remoteInfo = "DTUTI (Mac)";
 		};
-		05F4021716D2B2900081E7EF /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = A7E383AB160DFEA700CF72D6 /* DTFoundation.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 052B1CDF16C6856E005C3CA2;
-			remoteInfo = DTFoundation;
-		};
 		A70E62F616C253C6009B47BF /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = A7E383AB160DFEA700CF72D6 /* DTFoundation.xcodeproj */;
@@ -1416,7 +1409,6 @@
 				A7B4E2DA1686FDB300717707 /* libDTZipArchive.a */,
 				A7B4E2E01686FDB300717707 /* libDTUTI.a */,
 				05F4021616D2B2900081E7EF /* libDTUTI.a */,
-				05F4021816D2B2900081E7EF /* DTFoundation.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1837,13 +1829,6 @@
 			fileType = archive.ar;
 			path = libDTUTI.a;
 			remoteRef = 05F4021516D2B2900081E7EF /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		05F4021816D2B2900081E7EF /* DTFoundation.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = DTFoundation.framework;
-			remoteRef = 05F4021716D2B2900081E7EF /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		A7B4E2D21686FDB300717707 /* UnitTests.octest */ = {
@@ -2531,7 +2516,7 @@
 				GCC_THUMB_SUPPORT = NO;
 				HEADER_SEARCH_PATHS = /usr/include/libxml2;
 				PRODUCT_NAME = DTCoreText;
-				PUBLIC_HEADERS_FOLDER_PATH = ../../DTCoreText;
+				PUBLIC_HEADERS_FOLDER_PATH = ../../Headers/DTCoreText;
 				SKIP_INSTALL = YES;
 				USER_HEADER_SEARCH_PATHS = "Core/Source Core/Externals/** Core/Externals/DTFoundation/Core/Source/**";
 			};
@@ -2549,7 +2534,7 @@
 				GCC_THUMB_SUPPORT = NO;
 				HEADER_SEARCH_PATHS = /usr/include/libxml2;
 				PRODUCT_NAME = DTCoreText;
-				PUBLIC_HEADERS_FOLDER_PATH = ../../DTCoreText;
+				PUBLIC_HEADERS_FOLDER_PATH = ../../Headers/DTCoreText;
 				SKIP_INSTALL = YES;
 				USER_HEADER_SEARCH_PATHS = "Core/Source Core/Externals/** Core/Externals/DTFoundation/Core/Source/**";
 				VALIDATE_PRODUCT = YES;
