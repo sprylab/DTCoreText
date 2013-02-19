@@ -609,6 +609,20 @@
 /* End PBXBuildRule section */
 
 /* Begin PBXContainerItemProxy section */
+		05F4021516D2B2900081E7EF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A7E383AB160DFEA700CF72D6 /* DTFoundation.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = A7E889A416A9B190009EF0DF;
+			remoteInfo = "DTUTI (Mac)";
+		};
+		05F4021716D2B2900081E7EF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A7E383AB160DFEA700CF72D6 /* DTFoundation.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 052B1CDF16C6856E005C3CA2;
+			remoteInfo = DTFoundation;
+		};
 		A70E62F616C253C6009B47BF /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = A7E383AB160DFEA700CF72D6 /* DTFoundation.xcodeproj */;
@@ -678,20 +692,6 @@
 			proxyType = 2;
 			remoteGlobalIDString = A7E383DA160DFF8600CF72D6;
 			remoteInfo = DTZipArchive;
-		};
-		A7B4E2DB1686FDB300717707 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = A7E383AB160DFEA700CF72D6 /* DTFoundation.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = A7E383F1160E002200CF72D6;
-			remoteInfo = DTDownloadCache;
-		};
-		A7B4E2DD1686FDB300717707 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = A7E383AB160DFEA700CF72D6 /* DTFoundation.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = A7787A0D16441B1800AF5830;
-			remoteInfo = DTBonjour;
 		};
 		A7B4E2DF1686FDB300717707 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -1414,9 +1414,9 @@
 				A7B4E2D61686FDB300717707 /* libDTHTMLParser.a */,
 				A7B4E2D81686FDB300717707 /* libDTHTMLParser.a */,
 				A7B4E2DA1686FDB300717707 /* libDTZipArchive.a */,
-				A7B4E2DC1686FDB300717707 /* libDTDownloadCache.a */,
-				A7B4E2DE1686FDB300717707 /* libDTBonjour.a */,
 				A7B4E2E01686FDB300717707 /* libDTUTI.a */,
+				05F4021616D2B2900081E7EF /* libDTUTI.a */,
+				05F4021816D2B2900081E7EF /* DTFoundation.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1832,6 +1832,20 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
+		05F4021616D2B2900081E7EF /* libDTUTI.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libDTUTI.a;
+			remoteRef = 05F4021516D2B2900081E7EF /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		05F4021816D2B2900081E7EF /* DTFoundation.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = DTFoundation.framework;
+			remoteRef = 05F4021716D2B2900081E7EF /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		A7B4E2D21686FDB300717707 /* UnitTests.octest */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
@@ -1865,20 +1879,6 @@
 			fileType = archive.ar;
 			path = libDTZipArchive.a;
 			remoteRef = A7B4E2D91686FDB300717707 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		A7B4E2DC1686FDB300717707 /* libDTDownloadCache.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libDTDownloadCache.a;
-			remoteRef = A7B4E2DB1686FDB300717707 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		A7B4E2DE1686FDB300717707 /* libDTBonjour.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libDTBonjour.a;
-			remoteRef = A7B4E2DD1686FDB300717707 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		A7B4E2E01686FDB300717707 /* libDTUTI.a */ = {
