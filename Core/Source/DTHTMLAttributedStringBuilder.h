@@ -6,9 +6,8 @@
 //  Copyright (c) 2012 Drobnik.com. All rights reserved.
 //
 
-#import "DTHTMLParser.h"
-
 @class DTHTMLElement;
+@protocol DTHTMLParserDelegate;
 
 typedef void(^DTHTMLAttributedStringBuilderWillFlushCallback)(DTHTMLElement *);
 

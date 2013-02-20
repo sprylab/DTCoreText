@@ -14,6 +14,7 @@
 #import "DTHTMLElementStylesheet.h"
 
 #import "DTVersion.h"
+#import "DTHTMLParser.h"
 
 @interface DTHTMLAttributedStringBuilder ()
 
