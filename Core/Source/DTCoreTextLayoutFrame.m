@@ -165,9 +165,16 @@ static BOOL _DTCoreTextLayoutFramesShouldDrawDebugFrames = NO;
 	DTTextBlock *currentTextBlock = nil;
 	DTTextBlock *previousTextBlock = nil;
 	
-	do 
+	// calculate length of an hyphenation mark ("-")
+		
+	NSAttributedString *hyphenMarkString = [[NSAttributedString alloc] initWithString:@"-"];
+	CTLineRef	line = CTLineCreateWithAttributedString((__bridge CFAttributedStringRef)(hyphenMarkString));
+	CGFloat hyphenMarkLength = CTLineGetTypographicBounds(line, NULL, NULL, NULL);
+	CFRelease(line);
+	
+	do
 	{
-		while (lineRange.location >= (currentParagraphRange.location+currentParagraphRange.length)) 
+		while (lineRange.location >= (currentParagraphRange.location+currentParagraphRange.length))
 		{
 			// we are outside of this paragraph, so we go to the next
 			[paragraphRanges removeObjectAtIndex:0];
@@ -225,6 +232,8 @@ static BOOL _DTCoreTextLayoutFramesShouldDrawDebugFrames = NO;
 		{
 			availableSpace = tailIndent - offset - currentTextBlock.padding.right;
 		}
+		
+		availableSpace -= hyphenMarkLength; // reserve some space for hyphenation marks, so they won't get cut
 		
 		// find how many characters we get into this line
 		lineRange.length = CTTypesetterSuggestLineBreak(typesetter, lineRange.location, availableSpace);
@@ -417,7 +426,28 @@ static BOOL _DTCoreTextLayoutFramesShouldDrawDebugFrames = NO;
 		
 		BOOL isRTL = NO;
 		
-		switch (textAlignment) 
+		static const unichar softHypen = 0x00AD;
+		BOOL lastCharIsSoftHyphen = [[_attributedStringFragment string] characterAtIndex:lineRange.location+lineRange.length-1]==softHypen;
+		
+		// replace soft hyphen with a dash "-"
+		if (lastCharIsSoftHyphen)
+		{
+			CFRange cfStringRange = CTLineGetStringRange(line);
+			NSRange stringRange = NSMakeRange(cfStringRange.location, cfStringRange.length);
+			
+			NSMutableAttributedString* lineAttrString = [[_attributedStringFragment attributedSubstringFromRange:stringRange] mutableCopy];
+			NSRange replaceRange = NSMakeRange(stringRange.length-1, 1);
+			[lineAttrString replaceCharactersInRange:replaceRange withString:@"-"];
+			
+			CTLineRef hyphenLine = CTLineCreateWithAttributedString((__bridge CFAttributedStringRef)lineAttrString);
+			
+			CFRelease(line);
+			line = hyphenLine;
+		}
+		
+		
+		
+		switch (textAlignment)
 		{
 			case kCTLeftTextAlignment:
 			{
@@ -460,8 +490,9 @@ static BOOL _DTCoreTextLayoutFramesShouldDrawDebugFrames = NO;
 				
 			case kCTJustifiedTextAlignment:
 			{
-				BOOL isAtEndOfParagraph    = (currentParagraphRange.location+currentParagraphRange.length <= lineRange.location+lineRange.length || 		// JTL 28/June/2012
-					[[_attributedStringFragment string] characterAtIndex:lineRange.location+lineRange.length-1]==0x2028);									// JTL 28/June/2012
+				BOOL isAtEndOfParagraph   = (currentParagraphRange.location+currentParagraphRange.length <= lineRange.location+lineRange.length || 	
+											 [[_attributedStringFragment string] characterAtIndex:lineRange.location+lineRange.length-1]==0x2028);
+				// JTL 28/June/2012
 
 				// only justify if not last line, not <br>, and if the line width is longer than 60% of the frame
 				// avoids over-stretching
