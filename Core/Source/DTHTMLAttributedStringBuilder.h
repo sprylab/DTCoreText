@@ -11,7 +11,6 @@
 
 typedef void(^DTHTMLAttributedStringBuilderWillFlushCallback)(DTHTMLElement *);
 
-
 /**
  Class for building an `NSAttributedString` from an HTML document.
  */

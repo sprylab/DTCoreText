@@ -98,7 +98,11 @@
 
 - (NSString *)description
 {
-	return [NSString stringWithFormat:@"<%@ glyphs=%d %@>", [self class], [self numberOfGlyphs], NSStringFromCGRect(_frame)];
+#if TARGET_OS_IPHONE
+	return [NSString stringWithFormat:@"<%@ glyphs=%ld %@>", [self class], [self numberOfGlyphs], NSStringFromCGRect(_frame)];
+#else
+	return [NSString stringWithFormat:@"<%@ glyphs=%ld %@>", [self class], [self numberOfGlyphs], NSStringFromRect(_frame)];
+#endif
 }
 
 #pragma mark Calculations

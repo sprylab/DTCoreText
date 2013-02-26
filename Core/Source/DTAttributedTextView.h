@@ -8,9 +8,9 @@
 
 #import "DTAttributedTextContentView.h"
 
-@class DTAttributedTextView;
+#import "DTScrollView.h"
 
-@interface DTAttributedTextView : UIScrollView
+@interface DTAttributedTextView : DTScrollView
 
 /**
  The attributed text to be displayed in the text content view of the receiver.
@@ -25,7 +25,7 @@
 /**
  A view to be displayed behind the text content view
  */
-@property (nonatomic, strong) IBOutlet UIView *backgroundView;
+@property (nonatomic, strong) IBOutlet DTView *backgroundView;
 
 /**
  A delegate implementing DTAttributedTextContentViewDelegate to provide custom subviews for images and links.

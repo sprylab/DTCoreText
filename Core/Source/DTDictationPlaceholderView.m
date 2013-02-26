@@ -8,6 +8,10 @@
 
 #import "DTDictationPlaceholderView.h"
 
+#if !TARGET_OS_IPHONE
+#import "NSView+UIVIew.h"
+#endif
+
 // if you change any of these then also make sure to adjust the sizes in DTDictationPlaceholderTextAttachment
 #define DOT_WIDTH 10.0f
 #define DOT_DISTANCE 2.5f
@@ -29,8 +33,11 @@
     self = [super initWithFrame:frame];
     if (self)
     {
-        self.backgroundColor = [UIColor clearColor];
-        
+#if TARGET_OS_IPHONE
+        self.backgroundColor = [DTColor clearColor];
+#else
+		// TODO SG color
+#endif
         [self sizeToFit];
     }
     return self;
@@ -41,33 +48,59 @@
     return CGSizeMake(DOT_OUTSIDE_MARGIN*2.0f + DOT_WIDTH*3.0f + DOT_DISTANCE*2.0f, DOT_OUTSIDE_MARGIN*2.0f + DOT_WIDTH);
 }
 
-- (UIColor *)_lightDotColor
+- (DTColor *)_lightDotColor
 {
-    return [UIColor colorWithRed:238.0/255.0 green:128.0/255.0 blue:238.0/255.0 alpha:1.0];
+#if TARGET_OS_IPHONE
+    return [DTColor colorWithRed:238.0/255.0 green:128.0/255.0 blue:238.0/255.0 alpha:1.0];
+#else
+	// TODO SG ??
+    return [DTColor colorWithCalibratedRed:238.0/255.0 green:128.0/255.0 blue:238.0/255.0 alpha:1.0];
+#endif
 }
 
-- (UIColor *)_darkDotColor
+- (DTColor *)_darkDotColor
 {
-    return [UIColor colorWithRed:191.0/255.0 green:51.0/255.0 blue:191.0/255.0 alpha:1.0];
+#if TARGET_OS_IPHONE
+    return [DTColor colorWithRed:191.0/255.0 green:51.0/255.0 blue:191.0/255.0 alpha:1.0];
+#else
+	// TODO SG ??
+    return [DTColor colorWithCalibratedRed:191.0/255.0 green:51.0/255.0 blue:191.0/255.0 alpha:1.0];
+#endif
 }
 
+#if TARGET_OS_IPHONE
 - (void)willMoveToSuperview:(UIView *)newSuperview
 {
     [super willMoveToSuperview:newSuperview];
-  
-    [_phaseTimer invalidate], _phaseTimer = nil;
+	[self updateTimer:(newSuperview!= nil)];
+}
+#else
+	// TODO SG ??
+- (void)viewWillMoveToSuperview:(NSView *)newSuperview
+{
+    [super viewWillMoveToSuperview:newSuperview];
+	[self updateTimer:(newSuperview!= nil)];
+}
+#endif
+
+- (void)updateTimer:(BOOL)hasNewSuperView
+{
+	[_phaseTimer invalidate], _phaseTimer = nil;
     
-    if (newSuperview)
+    if (YES == hasNewSuperView)
     {
         _phaseTimer = [NSTimer scheduledTimerWithTimeInterval:0.25 target:self selector:@selector(_phaseTimerTick:) userInfo:nil repeats:YES];
     }
 }
 
-
 - (void)drawRect:(CGRect)rect
 {
+#if TARGET_OS_IPHONE
     CGContextRef ctx = UIGraphicsGetCurrentContext();
-    
+#else
+	CGContextRef ctx = [[NSGraphicsContext currentContext] graphicsPort];
+#endif
+	
     CGRect dotRect = CGRectMake(DOT_OUTSIDE_MARGIN, 4, DOT_WIDTH, DOT_WIDTH);
     
     if (_phase==0)

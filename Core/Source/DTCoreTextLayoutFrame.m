@@ -10,6 +10,8 @@
 #import "DTCoreTextLayoutFrame.h"
 #import "DTVersion.h"
 
+#import <QuartzCore/QuartzCore.h>
+
 // global flag that shows debug frames
 static BOOL _DTCoreTextLayoutFramesShouldDrawDebugFrames = NO;
 
@@ -735,6 +737,7 @@ static BOOL _DTCoreTextLayoutFramesShouldDrawDebugFrames = NO;
 
 - (void)_setShadowInContext:(CGContextRef)context fromDictionary:(NSDictionary *)dictionary
 {
+#if TARGET_OS_IPHONE
 	DTColor *color = [dictionary objectForKey:@"Color"];
 	CGSize offset = [[dictionary objectForKey:@"Offset"] CGSizeValue];
 	CGFloat blur = [[dictionary objectForKey:@"Blur"] floatValue];
@@ -761,6 +764,10 @@ static BOOL _DTCoreTextLayoutFramesShouldDrawDebugFrames = NO;
 	}
 	
 	CGContextSetShadowWithColor(context, offset, blur, color.CGColor);
+#else
+	// TODO SG
+	NSLog(@"TODO ??");
+#endif
 }
 
 - (CGRect)_frameForTextBlock:(DTTextBlock *)textBlock atIndex:(NSUInteger)location
@@ -842,9 +849,13 @@ static BOOL _DTCoreTextLayoutFramesShouldDrawDebugFrames = NO;
 	
 	
 	CGContextSaveGState(context);
-	
+
+#if TARGET_OS_IPHONE
 	// need to push the CG context so that the UI* based colors can be set
 	UIGraphicsPushContext(context);
+#else
+	// TODO SG ??
+#endif
 	
 	// text block handling
 	if (_textBlockHandler)
@@ -1116,9 +1127,15 @@ static BOOL _DTCoreTextLayoutFramesShouldDrawDebugFrames = NO;
 						
 						CGPoint origin = oneRun.frame.origin;
 						origin.y = self.frame.size.height - origin.y - ascender - descender;
+						
 						CGRect flippedRect = CGRectMake(roundf(origin.x), roundf(origin.y), attachment.displaySize.width, attachment.displaySize.height);
 						
+#if TARGET_OS_IPHONE
 						CGContextDrawImage(context, flippedRect, image.CGImage);
+#else
+						// TODO SG ??
+						CGContextDrawImage(context, flippedRect, [image CGImageForProposedRect:&flippedRect context:(__bridge NSGraphicsContext *)(context) hints:nil]);
+#endif
 					}
 				}
 			}
@@ -1152,7 +1169,9 @@ static BOOL _DTCoreTextLayoutFramesShouldDrawDebugFrames = NO;
 		CFRelease(_textFrame);
 	}
 	
+#if TARGET_OS_IPHONE
 	UIGraphicsPopContext();
+#endif
 	CGContextRestoreGState(context);
 }
 
