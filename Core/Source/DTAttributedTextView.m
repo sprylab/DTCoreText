@@ -162,7 +162,6 @@
 		[self setContentOffset:CGPointMake(0, scrollPos) animated:animated];
 #else
 		// TODO SG ??
-		NSLog(@"TODO, DTAttributedTextView, scrollToAnchorNamed");
 #endif
 	}
 }
