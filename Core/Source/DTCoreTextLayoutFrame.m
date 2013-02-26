@@ -167,9 +167,16 @@ static BOOL _DTCoreTextLayoutFramesShouldDrawDebugFrames = NO;
 	DTTextBlock *currentTextBlock = nil;
 	DTTextBlock *previousTextBlock = nil;
 	
-	do 
+	// calculate length of an hyphenation mark ("-")
+		
+	NSAttributedString *hyphenMarkString = [[NSAttributedString alloc] initWithString:@"-"];
+	CTLineRef	line = CTLineCreateWithAttributedString((__bridge CFAttributedStringRef)(hyphenMarkString));
+	CGFloat hyphenMarkLength = CTLineGetTypographicBounds(line, NULL, NULL, NULL);
+	CFRelease(line);
+	
+	do
 	{
-		while (lineRange.location >= (currentParagraphRange.location+currentParagraphRange.length)) 
+		while (lineRange.location >= (currentParagraphRange.location+currentParagraphRange.length))
 		{
 			// we are outside of this paragraph, so we go to the next
 			[paragraphRanges removeObjectAtIndex:0];
@@ -227,6 +234,8 @@ static BOOL _DTCoreTextLayoutFramesShouldDrawDebugFrames = NO;
 		{
 			availableSpace = tailIndent - offset - currentTextBlock.padding.right;
 		}
+		
+		availableSpace -= hyphenMarkLength; // reserve some space for hyphenation marks, so they won't get cut
 		
 		// find how many characters we get into this line
 		lineRange.length = CTTypesetterSuggestLineBreak(typesetter, lineRange.location, availableSpace);
