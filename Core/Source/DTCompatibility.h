@@ -6,6 +6,13 @@
 //  Copyright (c) 2012 Drobnik.com. All rights reserved.
 //
 
+// DTImage is UIImage on iOS, NSImage on Mac
+#if TARGET_OS_IPHONE
+@compatibility_alias DTView UIView;
+#else
+@compatibility_alias DTView NSView;
+#endif
+
 // DTColor is UIColor on iOS, NSColor on Mac
 #if TARGET_OS_IPHONE
 @compatibility_alias DTColor UIColor;
@@ -31,6 +38,8 @@
 #if TARGET_OS_IPHONE
 #define DTEdgeInsets UIEdgeInsets
 #define DTEdgeInsetsMake(a, b, c, d) UIEdgeInsetsMake(a, b, c, d)
+#define DTEdgeInsetsInsetRect(a, b) UIEdgeInsetsInsetRect(a, b)
+#define DTEdgeInsetsEqualToEdgeInsets(a, b) UIEdgeInsetsEqualToEdgeInsets(a, b)
 #else
 #define DTEdgeInsets NSEdgeInsets
 #define DTEdgeInsetsMake(a, b, c, d) NSEdgeInsetsMake(a, b, c, d)
@@ -50,6 +59,18 @@ static inline NSString* NSStringFromCGSize(const CGSize size)
 static inline NSString* NSStringFromCGPoint(const CGPoint point)
 {
 	return NSStringFromPoint(NSPointFromCGPoint(point));
+}
+
+static inline CGRect DTEdgeInsetsInsetRect(CGRect rect, DTEdgeInsets insets) {
+    rect.origin.x    += insets.left;
+    rect.origin.y    += insets.top;
+    rect.size.width  -= (insets.left + insets.right);
+    rect.size.height -= (insets.top  + insets.bottom);
+    return rect;
+}
+
+static inline BOOL DTEdgeInsetsEqualToEdgeInsets(DTEdgeInsets insets1, DTEdgeInsets insets2) {
+    return insets1.left == insets2.left && insets1.top == insets2.top && insets1.right == insets2.right && insets1.bottom == insets2.bottom;
 }
 
 #define NSTextAlignmentLeft			NSLeftTextAlignment

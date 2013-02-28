@@ -8,6 +8,8 @@
 
 #import <CoreText/CoreText.h>
 
+#import "DTCompatibility.h"
+
 @class DTAttributedTextContentView;
 @class DTCoreTextLayoutFrame;
 @class DTTextBlock;
@@ -68,7 +70,7 @@ extern NSString * const DTAttributedTextContentViewDidFinishLayoutNotification;
  @param frame The frame that the view should use to fit on top of the space reserved for the attachment
  @returns The view that should represent the given attachment
  */
-- (UIView *)attributedTextContentView:(DTAttributedTextContentView *)attributedTextContentView viewForAttachment:(DTTextAttachment *)attachment frame:(CGRect)frame;
+- (DTView *)attributedTextContentView:(DTAttributedTextContentView *)attributedTextContentView viewForAttachment:(DTTextAttachment *)attachment frame:(CGRect)frame;
 
 
 /**
@@ -80,7 +82,7 @@ extern NSString * const DTAttributedTextContentViewDidFinishLayoutNotification;
  @param frame The frame that the view should use to fit on top of the space reserved for the attachment
  @returns The view that should represent the given hyperlink
  */
-- (UIView *)attributedTextContentView:(DTAttributedTextContentView *)attributedTextContentView viewForLink:(NSURL *)url identifier:(NSString *)identifier frame:(CGRect)frame;
+- (DTView *)attributedTextContentView:(DTAttributedTextContentView *)attributedTextContentView viewForLink:(NSURL *)url identifier:(NSString *)identifier frame:(CGRect)frame;
 
 
 /** 
@@ -94,7 +96,7 @@ extern NSString * const DTAttributedTextContentViewDidFinishLayoutNotification;
  @returns The view that should represent the given hyperlink or text attachment
  @see attributedTextContentView:viewForAttachment:frame: and attributedTextContentView:viewForAttachment:frame:
  */
-- (UIView *)attributedTextContentView:(DTAttributedTextContentView *)attributedTextContentView viewForAttributedString:(NSAttributedString *)string frame:(CGRect)frame;
+- (DTView *)attributedTextContentView:(DTAttributedTextContentView *)attributedTextContentView viewForAttributedString:(NSAttributedString *)string frame:(CGRect)frame;
 
 @end
 
@@ -107,16 +109,17 @@ enum {
 typedef NSUInteger DTAttributedTextContentViewRelayoutMask;
 
 
-@interface DTAttributedTextContentView : UIView
+@interface DTAttributedTextContentView : DTView
 {
 	NSAttributedString *_attributedString;
 	DTCoreTextLayoutFrame *_layoutFrame;
 	
-	UIEdgeInsets _edgeInsets;
+	DTEdgeInsets _edgeInsets;
 	
 	NSMutableDictionary *customViewsForAttachmentsIndex;
 
 	BOOL _flexibleHeight;
+	DTColor *_backgroundColor;
 }
 
 - (void)layoutSubviewsInRect:(CGRect)rect;
@@ -141,7 +144,7 @@ typedef NSUInteger DTAttributedTextContentViewRelayoutMask;
 @property (nonatomic, strong) NSMutableSet *customViews;
 
 @property (nonatomic, copy) NSAttributedString *attributedString;
-@property (nonatomic) UIEdgeInsets edgeInsets;
+@property (nonatomic) DTEdgeInsets edgeInsets;
 @property (nonatomic) BOOL shouldDrawImages;
 @property (nonatomic) BOOL shouldDrawLinks;
 @property (nonatomic) BOOL shouldLayoutCustomSubviews;
@@ -163,6 +166,9 @@ typedef NSUInteger DTAttributedTextContentViewRelayoutMask;
 @property (nonatomic, assign) dispatch_queue_t layoutQueue;  // GCD objects don't use ARC
 #endif
 
+#if !TARGET_OS_IPHONE
+@property (nonatomic, strong) DTColor *backgroundColor;
+#endif
 
 @end
 

@@ -10,6 +10,10 @@
 #import "DTCoreText.h"
 #import <QuartzCore/QuartzCore.h>
 
+#if !TARGET_OS_IPHONE
+#import "NSView+UIVIew.h"
+#endif
+
 #if !__has_feature(objc_arc)
 #error THIS CODE MUST BE COMPILED WITH ARC ENABLED!
 #endif
@@ -80,9 +84,22 @@ static Class _layerClassToUseForDTAttributedTextContentView = nil;
 
 @implementation DTAttributedTextContentView
 
+#if !TARGET_OS_IPHONE
+- (BOOL)isFlipped
+{
+	// TODO SG reason description, for view as parent set YES, for layerbased NO
+//	return YES;
+	return (self.superview != nil);
+}
+#endif
+
 - (void)setup
 {
+#if TARGET_OS_IPHONE
 	self.contentMode = UIViewContentModeTopLeft; // to avoid bitmap scaling effect on resize
+#else
+	// TODO SG ??
+#endif
 	_shouldLayoutCustomSubviews = YES;
 	
 	// by default we draw images, if custom views are supported (by setting delegate) this is disabled
@@ -96,16 +113,18 @@ static Class _layerClassToUseForDTAttributedTextContentView = nil;
 	_flexibleHeight = YES;
 	_relayoutMask = DTAttributedTextContentViewRelayoutOnWidthChanged;
 	
+	// TODO SG !!!
 	// possibly already set in NIB
 	if (!self.backgroundColor)
 	{
-		self.backgroundColor = [DTColor whiteColor];
+		self.backgroundColor = [DTColor clearColor];
 	}
 	
 	// set tile size if applicable
 	CATiledLayer *layer = (id)self.layer;
 	if ([layer isKindOfClass:[CATiledLayer class]])
 	{
+#if TARGET_OS_IPHONE
 		// get larger dimension and multiply by scale
 		UIScreen *mainScreen = [UIScreen mainScreen];
 		CGFloat largerDimension = MAX(mainScreen.applicationFrame.size.width, mainScreen.applicationFrame.size.height);
@@ -116,6 +135,9 @@ static Class _layerClassToUseForDTAttributedTextContentView = nil;
 		layer.tileSize = tileSize;
 		
 		_isTiling = YES;
+#else
+		// TODO SG ??
+#endif
 	}
 	
 	[self layoutQueue];
@@ -182,7 +204,7 @@ static Class _layerClassToUseForDTAttributedTextContentView = nil;
 		}
 		
 		// hide all customViews
-		for (UIView *view in self.customViews)
+		for (DTView *view in self.customViews)
 		{
 			view.hidden = YES;
 		}
@@ -272,7 +294,7 @@ static Class _layerClassToUseForDTAttributedTextContentView = nil;
 						{
 							indexKey = [NSNumber numberWithInteger:[attachment hash]];
 							
-							UIView *existingAttachmentView = [self.customViewsForAttachmentsIndex objectForKey:indexKey];
+							DTView *existingAttachmentView = [self.customViewsForAttachmentsIndex objectForKey:indexKey];
 							
 							if (existingAttachmentView)
 							{
@@ -287,7 +309,7 @@ static Class _layerClassToUseForDTAttributedTextContentView = nil;
 							}
 							else
 							{
-								UIView *newCustomAttachmentView = nil;
+								DTView *newCustomAttachmentView = nil;
 								
 								if ([attachment isKindOfClass:[DTDictationPlaceholderTextAttachment class]])
 								{
@@ -325,7 +347,7 @@ static Class _layerClassToUseForDTAttributedTextContentView = nil;
 					
 					if (linkURL && (_delegateFlags.delegateSupportsCustomViewsForLinks || _delegateFlags.delegateSupportsGenericCustomViews))
 					{
-						UIView *existingLinkView = [self.customViewsForLinksIndex objectForKey:indexKey];
+						DTView *existingLinkView = [self.customViewsForLinksIndex objectForKey:indexKey];
 						
 						if (existingLinkView)
 						{
@@ -334,7 +356,7 @@ static Class _layerClassToUseForDTAttributedTextContentView = nil;
 						}
 						else
 						{
-							UIView *newCustomLinkView = nil;
+							DTView *newCustomLinkView = nil;
 							
 							if (_delegateFlags.delegateSupportsCustomViewsForLinks)
 							{
@@ -368,6 +390,7 @@ static Class _layerClassToUseForDTAttributedTextContentView = nil;
 	});
 }
 
+#if TARGET_OS_IPHONE
 - (void)layoutSubviews
 {
 	[super layoutSubviews];
@@ -377,6 +400,18 @@ static Class _layerClassToUseForDTAttributedTextContentView = nil;
 		[self layoutSubviewsInRect:CGRectInfinite];
 	}
 }
+#else
+// TODO SG ??
+- (void)layout
+{
+	[super layout];
+	
+	if (_shouldLayoutCustomSubviews)
+	{
+		[self layoutSubviewsInRect:CGRectInfinite];
+	}
+}
+#endif
 
 - (void)drawLayer:(CALayer *)layer inContext:(CGContextRef)ctx
 {
@@ -388,9 +423,10 @@ static Class _layerClassToUseForDTAttributedTextContentView = nil;
 		CGContextSetPatternPhase(ctx, _backgroundOffset);
 	}
 	
+	// TODO SG color
 	CGContextSetFillColorWithColor(ctx, [self.backgroundColor CGColor]);
 	CGContextFillRect(ctx, rect);
-	
+
 	// offset layout if necessary
 	if (!CGPointEqualToPoint(_layoutOffset, CGPointZero))
 	{
@@ -413,7 +449,13 @@ static Class _layerClassToUseForDTAttributedTextContentView = nil;
 
 - (void)drawRect:(CGRect)rect
 {
+#if TARGET_OS_IPHONE
 	CGContextRef context = UIGraphicsGetCurrentContext();
+#else
+	// TODO SG right?
+	CGContextRef context = [[NSGraphicsContext currentContext] graphicsPort];
+#endif
+
 	[self.layoutFrame drawInContext:context drawImages:YES drawLinks:YES];
 }
 
@@ -434,7 +476,12 @@ static Class _layerClassToUseForDTAttributedTextContentView = nil;
             CGSize neededSize = [self intrinsicContentSize];
             
 			CGRect optimalFrame = CGRectMake(self.frame.origin.x, self.frame.origin.y, neededSize.width, neededSize.height);
+
+#if TARGET_OS_IPHONE
 			NSDictionary *userInfo = [NSDictionary dictionaryWithObject:[NSValue valueWithCGRect:optimalFrame] forKey:@"OptimalFrame"];
+#else
+			NSDictionary *userInfo = [NSDictionary dictionaryWithObject:[NSValue valueWithRect:optimalFrame] forKey:@"OptimalFrame"];
+#endif
 			
 			dispatch_async(dispatch_get_main_queue(), ^{
 				[[NSNotificationCenter defaultCenter] postNotificationName:DTAttributedTextContentViewDidFinishLayoutNotification object:self userInfo:userInfo];
@@ -450,7 +497,7 @@ static Class _layerClassToUseForDTAttributedTextContentView = nil;
 {
 	NSArray *linkViews = [customViewsForLinksIndex allValues];
 	
-	for (UIView *customView in linkViews)
+	for (DTView *customView in linkViews)
 	{
 		[customView removeFromSuperview];
 		[customViews removeObject:customView];
@@ -462,7 +509,7 @@ static Class _layerClassToUseForDTAttributedTextContentView = nil;
 - (void)removeAllCustomViews
 {
 	NSSet *allCustomViews = [NSSet setWithSet:customViews];
-	for (UIView *customView in allCustomViews)
+	for (DTView *customView in allCustomViews)
 	{
 		[customView removeFromSuperview];
 		[customViews removeObject:customView];
@@ -475,7 +522,7 @@ static Class _layerClassToUseForDTAttributedTextContentView = nil;
 - (void)removeSubviewsOutsideRect:(CGRect)rect
 {
 	NSSet *allCustomViews = [NSSet setWithSet:customViews];
-	for (UIView *customView in allCustomViews)
+	for (DTView *customView in allCustomViews)
 	{
 		if (CGRectGetMinY(customView.frame)> CGRectGetMaxY(rect) || CGRectGetMaxY(customView.frame) < CGRectGetMinY(rect))
 		{
@@ -524,7 +571,7 @@ static Class _layerClassToUseForDTAttributedTextContentView = nil;
 	
 	CGRect bounds = self.bounds;
 	bounds.size.width = constrainWidth;
-	CGRect rect = UIEdgeInsetsInsetRect(bounds, _edgeInsets);
+	CGRect rect = DTEdgeInsetsInsetRect(bounds, _edgeInsets);
 	
 	if (rect.size.width<=0)
 	{
@@ -567,9 +614,9 @@ static Class _layerClassToUseForDTAttributedTextContentView = nil;
 }
 
 #pragma mark Properties
-- (void)setEdgeInsets:(UIEdgeInsets)edgeInsets
+- (void)setEdgeInsets:(DTEdgeInsets)edgeInsets
 {
-	if (!UIEdgeInsetsEqualToEdgeInsets(edgeInsets, _edgeInsets))
+	if (!DTEdgeInsetsEqualToEdgeInsets(edgeInsets, _edgeInsets))
 	{
 		_edgeInsets = edgeInsets;
 		
@@ -656,10 +703,22 @@ static Class _layerClassToUseForDTAttributedTextContentView = nil;
 	}
 }
 
+#if !TARGET_OS_IPHONE
+- (BOOL)isOpaque
+{
+	return self.layer.opaque;
+}
+#endif
+
 - (void)setBackgroundColor:(DTColor *)newColor
 {
+#if TARGET_OS_IPHONE
 	super.backgroundColor = newColor;
-	
+#else
+	_backgroundColor = newColor;
+	self.layer.backgroundColor = [newColor CGColor];
+#endif
+
 	if ([newColor alphaComponent]<1.0)
 	{
 		self.opaque = NO;
@@ -709,7 +768,7 @@ static Class _layerClassToUseForDTAttributedTextContentView = nil;
 			// we can only layout if we have our own layouter
 			if (theLayouter)
 			{
-				CGRect rect = UIEdgeInsetsInsetRect(self.bounds, _edgeInsets);
+				CGRect rect = DTEdgeInsetsInsetRect(self.bounds, _edgeInsets);
 				
 				if (rect.size.width<=0)
 				{
@@ -733,7 +792,12 @@ static Class _layerClassToUseForDTAttributedTextContentView = nil;
 				CGSize neededSize = CGSizeMake(_layoutFrame.frame.size.width + _edgeInsets.left + _edgeInsets.right, CGRectGetMaxY(_layoutFrame.frame) + _edgeInsets.bottom);
 				
 				CGRect optimalFrame = CGRectMake(self.frame.origin.x, self.frame.origin.y, neededSize.width, neededSize.height);
+				
+#if TARGET_OS_IPHONE
 				NSDictionary *userInfo = [NSDictionary dictionaryWithObject:[NSValue valueWithCGRect:optimalFrame] forKey:@"OptimalFrame"];
+#else
+				NSDictionary *userInfo = [NSDictionary dictionaryWithObject:[NSValue valueWithRect:optimalFrame] forKey:@"OptimalFrame"];
+#endif
 				
 				dispatch_async(dispatch_get_main_queue(), ^{
 					[[NSNotificationCenter defaultCenter] postNotificationName:DTAttributedTextContentViewDidFinishLayoutNotification object:self userInfo:userInfo];
@@ -844,6 +908,9 @@ static Class _layerClassToUseForDTAttributedTextContentView = nil;
 	return _layoutQueue;
 }
 
+#if !TARGET_OS_IPHONE
+@synthesize backgroundColor=_backgroundColor;
+#endif
 @synthesize layouter = _layouter;
 @synthesize layoutFrame = _layoutFrame;
 @synthesize attributedString = _attributedString;

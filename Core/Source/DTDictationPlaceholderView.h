@@ -6,9 +6,13 @@
 //  Copyright (c) 2013 Cocoanetics. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "DTCompatibility.h"
 
-@interface DTDictationPlaceholderView : UIView
+#if TARGET_OS_IPHONE
+#import <UIKit/UIKit.h>
+#endif
+
+@interface DTDictationPlaceholderView : DTView
 
 /**
  Creates an appropriately sized DTDictationPlaceholderView with 3 animated purple dots

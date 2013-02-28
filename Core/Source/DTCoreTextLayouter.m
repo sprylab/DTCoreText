@@ -108,8 +108,12 @@
 	
 	if (_shouldCacheLayoutFrames)
 	{
+#if TARGET_OS_IPHONE
 		cacheKey = [NSString stringWithFormat:@"%ud-%@-%@", [_attributedString hash], NSStringFromCGRect(frame), NSStringFromRange(range)];
-		
+#else
+		// TODO SG ??
+		cacheKey = [NSString stringWithFormat:@"%ud-%@-%@", [_attributedString hash], NSStringFromRect(frame), NSStringFromRange(range)];
+#endif
 		DTCoreTextLayoutFrame *cachedLayoutFrame = [_layoutFrameCache objectForKey:cacheKey];
 		
 		if (cachedLayoutFrame)

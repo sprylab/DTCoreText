@@ -10,7 +10,12 @@
 #import "DTCoreText.h"
 #import <QuartzCore/QuartzCore.h>
 
-@interface DTAttributedTextView ()
+@interface DTAttributedTextView () {
+	
+#if !TARGET_OS_IPHONE
+	NSRect _originalFrame;
+#endif
+}
 
 - (void)setup;
 
@@ -21,7 +26,7 @@
 @implementation DTAttributedTextView
 {
 	DTAttributedTextContentView *_attributedTextContentView;
-	UIView *_backgroundView;
+	DTView *_backgroundView;
 
 	// these are pass-through, i.e. store until the content view is created
 	__unsafe_unretained id textDelegate;
@@ -46,6 +51,32 @@
 	[[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
+#if !TARGET_OS_IPHONE
+- (void)viewWillMoveToSuperview:(NSView*)newSuperview
+{
+    [self _setFlippedFrameWithSuperview:newSuperview];
+}
+
+- (void)_setFlippedFrameWithSuperview:(NSView*)superView
+{
+    NSPoint o1 = _originalFrame.origin;
+    NSSize s1 = _originalFrame.size;
+    
+    if (nil == superView )
+    {
+        self.frame = _originalFrame;
+    }
+    else
+    {
+        NSSize s0 = superView.frame.size;
+        
+        self.frame = NSMakeRect(o1.x, s0.height - o1.y - s1.height, s1.width, s1.height);
+    }
+}
+#endif
+
+#if TARGET_OS_IPHONE
+// TODO SG ??
 - (void)layoutSubviews
 {
 	[super layoutSubviews];
@@ -55,6 +86,17 @@
 	// layout custom subviews for visible area
 	[_attributedTextContentView layoutSubviewsInRect:self.bounds];
 }
+#else
+- (void)layout
+{
+	[super layout];
+	
+	[self attributedTextContentView];
+	
+	// layout custom subviews for visible area
+	[_attributedTextContentView layoutSubviewsInRect:self.bounds];
+}
+#endif
 
 - (void)awakeFromNib
 {
@@ -64,9 +106,14 @@
 // default
 - (void)setup
 {
+#if !TARGET_OS_IPHONE
+	_originalFrame = self.frame;
+#endif
 	if (!self.backgroundColor)
 	{
-		self.backgroundColor = [DTColor whiteColor];
+		// TODO SG
+		//self.backgroundColor = [DTColor whiteColor];
+		self.backgroundColor = [DTColor clearColor];
 		self.opaque = YES;
 		return;
 	}
@@ -83,7 +130,11 @@
 	}
 	
 	self.autoresizesSubviews = NO;
+#if TARGET_OS_IPHONE
 	self.clipsToBounds = YES;
+#else
+	// TODO SG nothing
+#endif
 }
 
 // override class e.g. for mutable content view
@@ -102,12 +153,16 @@
 		// get the line of the first index of the anchor range
 		DTCoreTextLayoutLine *line = [self.attributedTextContentView.layoutFrame lineContainingIndex:range.location];
 		
+#if TARGET_OS_IPHONE
 		// make sure we don't scroll too far
 		CGFloat maxScrollPos = self.contentSize.height - self.bounds.size.height + self.contentInset.bottom + self.contentInset.top;
 		CGFloat scrollPos = MIN(line.frame.origin.y, maxScrollPos);
 		
 		// scroll
 		[self setContentOffset:CGPointMake(0, scrollPos) animated:animated];
+#else
+		// TODO SG ??
+#endif
 	}
 }
 
@@ -115,10 +170,25 @@
 - (void)contentViewDidLayout:(NSNotification *)notification
 {
 	NSDictionary *userInfo = [notification userInfo];
+
+#if TARGET_OS_IPHONE
 	CGRect optimalFrame = [[userInfo objectForKey:@"OptimalFrame"] CGRectValue];
-	
+#else
+	CGRect optimalFrame = [[userInfo objectForKey:@"OptimalFrame"] rectValue];
+#endif
+
 	_attributedTextContentView.frame = optimalFrame;
+
+#if TARGET_OS_IPHONE
 	self.contentSize = [_attributedTextContentView intrinsicContentSize];
+#else
+	// TODO SG ??
+	CGSize contentSize = [_attributedTextContentView intrinsicContentSize];
+	[self.documentView setFrame:NSMakeRect(0, 0, contentSize.width, contentSize.height)];
+
+	// this sets background to transparent
+	self.layer.backgroundColor = [self.backgroundColor CGColor];
+#endif
 }
 
 #pragma mark Properties
@@ -129,13 +199,27 @@
 		// subclasses can specify a DTAttributedTextContentView subclass instead
 		Class classToUse = [self classForContentView];
 		
-		CGRect frame = UIEdgeInsetsInsetRect(self.bounds, self.contentInset);
+		CGRect frame = CGRectZero;
+		
+#if TARGET_OS_IPHONE
+		frame = DTEdgeInsetsInsetRect(self.bounds, self.contentInset);
+#else
+		// TODO SG ?? no insets
+		NSEdgeInsets contentInset = NSEdgeInsetsMake(0, 0, 0, 0);
+		frame = DTEdgeInsetsInsetRect(self.bounds, contentInset);
+#endif
+
 		_attributedTextContentView = [[classToUse alloc] initWithFrame:frame];
 		
+#if TARGET_OS_IPHONE
 		_attributedTextContentView.userInteractionEnabled = YES;
+#endif
+		
+		// TODO SG color
 		_attributedTextContentView.backgroundColor = self.backgroundColor;
 		_attributedTextContentView.shouldLayoutCustomSubviews = NO; // we call layout when scrolling
-		
+
+		/* already done in setter
 		// adjust opaqueness based on background color alpha
 		CGFloat alpha = [self.backgroundColor alphaComponent];
 		
@@ -147,6 +231,7 @@
 		{
 			_attributedTextContentView.opaque = YES;
 		}
+		*/
 
 		// set text delegate if it was set before instantiation of content view
 		_attributedTextContentView.delegate = textDelegate;
@@ -165,24 +250,27 @@
 
 		// this causes a relayout and the resulting notification will allow us to set the final frame
 		
+#if TARGET_OS_IPHONE
 		[self addSubview:_attributedTextContentView];
-	}		
+#else
+		self.documentView = _attributedTextContentView;
+#endif
+	}
 	
 	return _attributedTextContentView;
 }
 
 - (void)setBackgroundColor:(DTColor *)newColor
 {
+	super.backgroundColor = newColor;
+
 	if ([newColor alphaComponent]<1.0)
 	{
-		super.backgroundColor = newColor;
 		_attributedTextContentView.backgroundColor = [DTColor clearColor];
 		self.opaque = NO;
 	}
-	else 
+	else
 	{
-		super.backgroundColor = newColor;
-		
 		if (_attributedTextContentView.opaque)
 		{
 			_attributedTextContentView.backgroundColor = newColor;
@@ -190,36 +278,53 @@
 	}
 }
 
-- (UIView *)backgroundView
+- (DTView *)backgroundView
 {
 	if (!_backgroundView)
 	{
-		_backgroundView = [[UIView alloc] initWithFrame:self.bounds];
-		_backgroundView.backgroundColor	= [DTColor whiteColor];
+		_backgroundView = [[DTView alloc] initWithFrame:self.bounds];
 		
+#if TARGET_OS_IPHONE
+		_backgroundView.backgroundColor	= [DTColor whiteColor];
+#else
+		// TODO SG color
+#endif
+
+#if TARGET_OS_IPHONE
 		// default is no interaction because background should have no interaction
 		_backgroundView.userInteractionEnabled = NO;
+#endif
 
+#if TARGET_OS_IPHONE
 		[self insertSubview:_backgroundView belowSubview:self.attributedTextContentView];
+#else
+		// TODO SG ??
+		[self addSubview:_backgroundView positioned:NSWindowBelow relativeTo:self.attributedTextContentView];
+#endif
 		
 		// make content transparent so that we see the background
 		_attributedTextContentView.backgroundColor = [DTColor clearColor];
 		_attributedTextContentView.opaque = NO;
-	}		
+	}
 	
 	return _backgroundView;
 }
 
-- (void)setBackgroundView:(UIView *)backgroundView
+- (void)setBackgroundView:(DTView *)backgroundView
 {
 	if (_backgroundView != backgroundView)
 	{
 		[_backgroundView removeFromSuperview];
 		_backgroundView = backgroundView;
-		
+
 		if (_attributedTextContentView)
 		{
+#if TARGET_OS_IPHONE
 			[self insertSubview:_backgroundView belowSubview:_attributedTextContentView];
+#else
+			// TODO SG ??
+			[self addSubview:_backgroundView positioned:NSWindowBelow relativeTo:_attributedTextContentView];
+#endif
 		}
 		else
 		{
@@ -232,7 +337,7 @@
 			_attributedTextContentView.backgroundColor = [DTColor clearColor];
 			_attributedTextContentView.opaque = NO;
 		}
-		else 
+		else
 		{
 			_attributedTextContentView.backgroundColor = [DTColor whiteColor];
 			_attributedTextContentView.opaque = YES;
@@ -246,7 +351,7 @@
 
 	// might need layout for visible custom views
 	[self setNeedsLayout];
-
+	
 	if (_attributedTextContentView)
 	{
 		// pass it along if contentView already exists
@@ -267,10 +372,15 @@
 	{
 		if (self.frame.size.width != frame.size.width)
 		{
+#if TARGET_OS_IPHONE
 			// height does not matter, that will be determined anyhow
 			CGRect contentFrame = CGRectMake(0, 0, frame.size.width - self.contentInset.left - self.contentInset.right, 0);
-			
 			_attributedTextContentView.frame = contentFrame;
+#else
+			// TODO SG ??
+			CGRect contentFrame = CGRectMake(0, 0, frame.size.width, 0);
+			_attributedTextContentView.frame = contentFrame;
+#endif
 		}
 		[super setFrame:frame];
 	}

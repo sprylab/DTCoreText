@@ -63,7 +63,11 @@
 
 - (NSString *)description
 {
+#if TARGET_OS_IPHONE
 	return [NSString stringWithFormat:@"<%@ origin=%@ frame=%@ range=%@", [self class], NSStringFromCGPoint(_baselineOrigin), NSStringFromCGRect(self.frame), NSStringFromRange([self stringRange])];
+#else
+	return [NSString stringWithFormat:@"<%@ origin=%@ frame=%@ range=%@", [self class], NSStringFromPoint(_baselineOrigin), NSStringFromRect(self.frame), NSStringFromRange([self stringRange])];
+#endif
 }
 
 - (NSRange)stringRange

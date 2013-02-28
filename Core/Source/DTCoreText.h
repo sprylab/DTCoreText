@@ -41,30 +41,41 @@
 #import "DTHTMLParserNode.h"
 #import "DTHTMLParserTextNode.h"
 
+#if !TARGET_OS_IPHONE
+#import "NSView+UIVIew.h"
+#endif
 
-// These classes only work with UIKit on iOS
 #if TARGET_OS_IPHONE
-
+// These classes only work with UIKit on iOS
 #import "DTLazyImageView.h"
 #import "DTLinkButton.h"
 #import "DTWebVideoView.h"
 #import "NSAttributedStringRunDelegates.h"
-
 #import "DTAttributedTextCell.h"
+//#import "DTAttributedTextContentView.h"
+//#import "DTAttributedTextView.h"
+#import "DTCoreTextFontCollection.h"
+//#import "DTCoreTextGlyphRun.h"
+//#import "DTCoreTextLayoutFrame.h"
+//#import "DTCoreTextLayoutLine.h"
+//#import "DTCoreTextLayouter.h"
+
+//#import "DTDictationPlaceholderTextAttachment.h"
+//#import "DTDictationPlaceholderView.h"
+
+#import "UIFont+DTCoreText.h"
+#endif
+
+// converted iOS classes
 #import "DTAttributedTextContentView.h"
 #import "DTAttributedTextView.h"
-#import "DTCoreTextFontCollection.h"
 #import "DTCoreTextGlyphRun.h"
-#import "DTCoreTextLayoutFrame.h"
 #import "DTCoreTextLayoutLine.h"
+#import "DTCoreTextLayoutFrame.h"
 #import "DTCoreTextLayouter.h"
 
 #import "DTDictationPlaceholderTextAttachment.h"
 #import "DTDictationPlaceholderView.h"
-
-#import "UIFont+DTCoreText.h"
-
-#endif
 
 
 #define DT_ADD_FONT_ON_ATTACHMENTS
