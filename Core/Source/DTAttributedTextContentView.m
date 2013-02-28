@@ -87,7 +87,9 @@ static Class _layerClassToUseForDTAttributedTextContentView = nil;
 #if !TARGET_OS_IPHONE
 - (BOOL)isFlipped
 {
-	return YES;
+	// TODO SG reason description, for view as parent set YES, for layerbased NO
+//	return YES;
+	return (self.superview != nil);
 }
 #endif
 
@@ -115,7 +117,7 @@ static Class _layerClassToUseForDTAttributedTextContentView = nil;
 	// possibly already set in NIB
 	if (!self.backgroundColor)
 	{
-		self.backgroundColor = [DTColor greenColor];
+		self.backgroundColor = [DTColor clearColor];
 	}
 	
 	// set tile size if applicable
