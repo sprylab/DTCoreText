@@ -468,7 +468,10 @@ static Class _layerClassToUseForDTAttributedTextContentView = nil;
 - (void)relayoutText
 {
     // Make sure we actually have a superview and a previous layout before attempting to relayout the text.
-    if (_layoutFrame && self.superview)
+    if ([self layoutFrame] && self.superview)
+		// mic 2013/04/23: calling getter here because in case of updating the attributed string via setAttributedString
+		// _layoutFrame is thrown away. Since _layoutFrame is nil then, the text will not be redrawn. [self layoutFrame] is a lazy
+		// getter and will create a new one.
 	{
         // need new layout frame, layouter can remain because the attributed string is probably the same
         self.layoutFrame = nil;
