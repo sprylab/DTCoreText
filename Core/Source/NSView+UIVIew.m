@@ -19,13 +19,11 @@
 
 - (void)setAlpha:(CGFloat)alpha
 {
-	// TODO SG ??
 	self.layer.opacity = alpha;
 }
 
 - (void)setOpaque:(BOOL)opaque
 {
-	// TODO SG ??
 	self.layer.opaque = opaque;
 }
 

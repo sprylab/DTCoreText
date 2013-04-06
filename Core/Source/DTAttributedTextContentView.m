@@ -85,12 +85,15 @@ static Class _layerClassToUseForDTAttributedTextContentView = nil;
 @implementation DTAttributedTextContentView
 
 #if !TARGET_OS_IPHONE
-- (BOOL)isFlipped
-{
+//- (BOOL)isFlipped
+//{
 	// TODO SG reason description, for view as parent set YES, for layerbased NO
+//	return NO;
 //	return YES;
-	return (self.superview != nil);
-}
+//	return (self.superview != nil);
+//	return [[self superview] isFlipped];
+//}
+
 #endif
 
 - (void)setup
@@ -122,6 +125,7 @@ static Class _layerClassToUseForDTAttributedTextContentView = nil;
 	
 	// set tile size if applicable
 	CATiledLayer *layer = (id)self.layer;
+	
 	if ([layer isKindOfClass:[CATiledLayer class]])
 	{
 #if TARGET_OS_IPHONE
@@ -414,7 +418,8 @@ static Class _layerClassToUseForDTAttributedTextContentView = nil;
 #endif
 
 - (void)drawLayer:(CALayer *)layer inContext:(CGContextRef)ctx
-{
+{	
+	
 	// needs clearing of background
 	CGRect rect = CGContextGetClipBoundingBox(ctx);
 	
@@ -423,8 +428,10 @@ static Class _layerClassToUseForDTAttributedTextContentView = nil;
 		CGContextSetPatternPhase(ctx, _backgroundOffset);
 	}
 	
-	// TODO SG color
-	CGContextSetFillColorWithColor(ctx, [self.backgroundColor CGColor]);
+	CGColorRef clearColor = CGColorCreateGenericRGB(0, 0, 0, 0);
+	CGContextSetFillColorWithColor(ctx, clearColor);
+	CGColorRelease(clearColor);
+	
 	CGContextFillRect(ctx, rect);
 
 	// offset layout if necessary
@@ -452,7 +459,6 @@ static Class _layerClassToUseForDTAttributedTextContentView = nil;
 #if TARGET_OS_IPHONE
 	CGContextRef context = UIGraphicsGetCurrentContext();
 #else
-	// TODO SG right?
 	CGContextRef context = [[NSGraphicsContext currentContext] graphicsPort];
 #endif
 
@@ -716,7 +722,6 @@ static Class _layerClassToUseForDTAttributedTextContentView = nil;
 	super.backgroundColor = newColor;
 #else
 	_backgroundColor = newColor;
-	self.layer.backgroundColor = [newColor CGColor];
 #endif
 
 	if ([newColor alphaComponent]<1.0)

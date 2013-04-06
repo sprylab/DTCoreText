@@ -43,6 +43,9 @@
 			_iOS6TagsPossible = YES;
 		}
 #endif
+#if !TARGET_OS_IPHONE
+		_iOS6TagsPossible = YES;
+#endif
 	}
 	
 	return self;

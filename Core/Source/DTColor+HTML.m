@@ -480,9 +480,15 @@ static NSDictionary *colorLookup = nil;
 
 - (NSString *)htmlHexString
 {
-	CGFloat red = self.redComponent;
-	CGFloat blue = self.blueComponent;
-	CGFloat green = self.greenComponent;
+	NSColor *theColor = self;
+#if !TARGET_OS_IPHONE	
+	// TODO: check if colorspace is CYMK and only then convert to generic RGB colorspace
+	theColor = [self colorUsingColorSpace:[NSColorSpace genericRGBColorSpace]];
+#endif
+	
+	CGFloat red = theColor.redComponent;
+	CGFloat blue = theColor.blueComponent;
+	CGFloat green = theColor.greenComponent;
 	
 	static NSString *stringFormat = @"%02x%02x%02x";
 

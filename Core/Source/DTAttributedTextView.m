@@ -50,7 +50,7 @@
 {
 	[[NSNotificationCenter defaultCenter] removeObserver:self];
 }
-
+/*
 #if !TARGET_OS_IPHONE
 - (void)viewWillMoveToSuperview:(NSView*)newSuperview
 {
@@ -74,7 +74,7 @@
     }
 }
 #endif
-
+*/
 #if TARGET_OS_IPHONE
 // TODO SG ??
 - (void)layoutSubviews
@@ -108,16 +108,18 @@
 {
 #if !TARGET_OS_IPHONE
 	_originalFrame = self.frame;
+//	self.wantsLayer = YES;
+	self.drawsBackground = NO;
 #endif
-	if (!self.backgroundColor)
-	{
+//	if (!self.backgroundColor)
+//	{
 		// TODO SG
 		//self.backgroundColor = [DTColor whiteColor];
-		self.backgroundColor = [DTColor clearColor];
-		self.opaque = YES;
-		return;
-	}
-	
+//		self.backgroundColor = [DTColor clearColor];
+//		self.opaque = NO;
+//		return;
+//	}
+/*
 	CGFloat alpha = [self.backgroundColor alphaComponent];
 	
 	if (alpha < 1.0)
@@ -128,11 +130,12 @@
 	{
 		self.opaque = YES;
 	}
-	
+	*/
 	self.autoresizesSubviews = NO;
 #if TARGET_OS_IPHONE
 	self.clipsToBounds = YES;
 #else
+	self.attributedTextContentView;
 	// TODO SG nothing
 #endif
 }
@@ -187,7 +190,7 @@
 	[self.documentView setFrame:NSMakeRect(0, 0, contentSize.width, contentSize.height)];
 
 	// this sets background to transparent
-	self.layer.backgroundColor = [self.backgroundColor CGColor];
+//	self.layer.backgroundColor = [self.backgroundColor CGColor];
 #endif
 }
 
@@ -215,23 +218,8 @@
 		_attributedTextContentView.userInteractionEnabled = YES;
 #endif
 		
-		// TODO SG color
 		_attributedTextContentView.backgroundColor = self.backgroundColor;
 		_attributedTextContentView.shouldLayoutCustomSubviews = NO; // we call layout when scrolling
-
-		/* already done in setter
-		// adjust opaqueness based on background color alpha
-		CGFloat alpha = [self.backgroundColor alphaComponent];
-		
-		if (alpha < 1.0)
-		{
-			_attributedTextContentView.opaque = NO;
-		}
-		else
-		{
-			_attributedTextContentView.opaque = YES;
-		}
-		*/
 
 		// set text delegate if it was set before instantiation of content view
 		_attributedTextContentView.delegate = textDelegate;
@@ -259,24 +247,24 @@
 	
 	return _attributedTextContentView;
 }
-
+/*
 - (void)setBackgroundColor:(DTColor *)newColor
 {
 	super.backgroundColor = newColor;
 
 	if ([newColor alphaComponent]<1.0)
 	{
-		_attributedTextContentView.backgroundColor = [DTColor clearColor];
+		self.attributedTextContentView.backgroundColor = [DTColor clearColor];
 		self.opaque = NO;
 	}
 	else
 	{
-		if (_attributedTextContentView.opaque)
+		if (self.attributedTextContentView.opaque)
 		{
-			_attributedTextContentView.backgroundColor = newColor;
+			self.attributedTextContentView.backgroundColor = newColor;
 		}
 	}
-}
+}*/
 
 - (DTView *)backgroundView
 {

@@ -7,6 +7,7 @@
 //
 
 #import "DTDictationPlaceholderView.h"
+#import "DTColor+HTML.h"
 
 #if !TARGET_OS_IPHONE
 #import "NSView+UIVIew.h"
