@@ -9,7 +9,7 @@
 #import "DTAttributedTextContentView.h"
 
 #if TARGET_OS_IPHONE
-#import "DTScrollView.h"
+#import <DTFoundation/DTScrollView.h>
 #else
 #import <DTFoundationMac/DTScrollView.h>
 #endif

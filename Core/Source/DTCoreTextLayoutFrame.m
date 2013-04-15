@@ -8,7 +8,7 @@
 
 #import "DTCoreText.h"
 #import "DTCoreTextLayoutFrame.h"
-#import "DTVersion.h"
+#import <DTFoundation/DTVersion.h>
 
 #import <QuartzCore/QuartzCore.h>
 

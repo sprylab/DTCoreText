@@ -14,7 +14,7 @@
 #import "DTHTMLElementLI.h"
 #import "DTHTMLElementStylesheet.h"
 #import "DTHTMLElementText.h"
-#import "NSString+DTUtilities.h"
+#import <DTFoundation/NSString+DTUtilities.h>
 
 @interface DTHTMLElement ()
 

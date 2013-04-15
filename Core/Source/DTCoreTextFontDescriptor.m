@@ -7,7 +7,7 @@
 //
 
 #import "DTCoreTextFontDescriptor.h"
-#import "DTVersion.h"
+#import <DTFoundation/DTVersion.h>
 
 static NSCache *_fontCache = nil;
 static NSMutableDictionary *_fontOverrides = nil;
