@@ -428,9 +428,14 @@ static Class _layerClassToUseForDTAttributedTextContentView = nil;
 		CGContextSetPatternPhase(ctx, _backgroundOffset);
 	}
 	
-	CGColorRef clearColor = CGColorCreateGenericRGB(0, 0, 0, 0);
+#if TARGET_OS_IPHONE
+	CGColorRef clearColor = [[UIColor clearColor] CGColor];
 	CGContextSetFillColorWithColor(ctx, clearColor);
 	CGColorRelease(clearColor);
+#else
+	CGColorRef clearColor = CGColorCreateGenericRGB(0, 0, 0, 0);
+	CGContextSetFillColorWithColor(ctx, clearColor);
+#endif
 	
 	CGContextFillRect(ctx, rect);
 
