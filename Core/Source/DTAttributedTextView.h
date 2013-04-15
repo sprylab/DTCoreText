@@ -8,7 +8,11 @@
 
 #import "DTAttributedTextContentView.h"
 
+#if TARGET_OS_IPHONE
 #import "DTScrollView.h"
+#else
+#import <DTFoundationMac/DTScrollView.h>
+#endif
 
 @interface DTAttributedTextView : DTScrollView
 
