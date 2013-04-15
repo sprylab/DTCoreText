@@ -1,3 +1,3 @@
 [submodule "Core/Externals/DTFoundation"]
 	path = Core/Externals/DTFoundation
-	url = git@git.artifacts.de:DTFoundation.git
+	url = git@github.com:artifacts/DTFoundation.git
