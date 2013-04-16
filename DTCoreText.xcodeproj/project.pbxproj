@@ -21,6 +21,7 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		057B9230171C21B400D0F0FC /* DTFoundationMac.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05AA282C16DFD8CA00E5BEF5 /* DTFoundationMac.framework */; };
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		288765A50DF7441C002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765A40DF7441C002DB57D /* CoreGraphics.framework */; };
@@ -44,7 +45,7 @@
 		A70B4C9F1486558200873A4A /* DTCoreText.h in Headers */ = {isa = PBXBuildFile; fileRef = A70B4C9E1486558200873A4A /* DTCoreText.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A70B4CA01486558200873A4A /* DTCoreText.h in Headers */ = {isa = PBXBuildFile; fileRef = A70B4C9E1486558200873A4A /* DTCoreText.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A70E62D616C24905009B47BF /* DTDictationPlaceholderTextAttachment.h in Headers */ = {isa = PBXBuildFile; fileRef = A70E62D416C24905009B47BF /* DTDictationPlaceholderTextAttachment.h */; };
-		A70E62D716C24905009B47BF /* DTDictationPlaceholderTextAttachment.h in Headers */ = {isa = PBXBuildFile; fileRef = A70E62D416C24905009B47BF /* DTDictationPlaceholderTextAttachment.h */; };
+		A70E62D716C24905009B47BF /* DTDictationPlaceholderTextAttachment.h in Headers */ = {isa = PBXBuildFile; fileRef = A70E62D416C24905009B47BF /* DTDictationPlaceholderTextAttachment.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A70E62D816C24905009B47BF /* DTDictationPlaceholderTextAttachment.h in Headers */ = {isa = PBXBuildFile; fileRef = A70E62D416C24905009B47BF /* DTDictationPlaceholderTextAttachment.h */; };
 		A70E62D916C24905009B47BF /* DTDictationPlaceholderTextAttachment.h in Headers */ = {isa = PBXBuildFile; fileRef = A70E62D416C24905009B47BF /* DTDictationPlaceholderTextAttachment.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A70E62DA16C24905009B47BF /* DTDictationPlaceholderTextAttachment.m in Sources */ = {isa = PBXBuildFile; fileRef = A70E62D516C24905009B47BF /* DTDictationPlaceholderTextAttachment.m */; };
@@ -52,7 +53,7 @@
 		A70E62DC16C24905009B47BF /* DTDictationPlaceholderTextAttachment.m in Sources */ = {isa = PBXBuildFile; fileRef = A70E62D516C24905009B47BF /* DTDictationPlaceholderTextAttachment.m */; };
 		A70E62DD16C24905009B47BF /* DTDictationPlaceholderTextAttachment.m in Sources */ = {isa = PBXBuildFile; fileRef = A70E62D516C24905009B47BF /* DTDictationPlaceholderTextAttachment.m */; };
 		A70E62E016C24DDF009B47BF /* DTDictationPlaceholderView.h in Headers */ = {isa = PBXBuildFile; fileRef = A70E62DE16C24DDF009B47BF /* DTDictationPlaceholderView.h */; };
-		A70E62E116C24DDF009B47BF /* DTDictationPlaceholderView.h in Headers */ = {isa = PBXBuildFile; fileRef = A70E62DE16C24DDF009B47BF /* DTDictationPlaceholderView.h */; };
+		A70E62E116C24DDF009B47BF /* DTDictationPlaceholderView.h in Headers */ = {isa = PBXBuildFile; fileRef = A70E62DE16C24DDF009B47BF /* DTDictationPlaceholderView.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A70E62E216C24DDF009B47BF /* DTDictationPlaceholderView.h in Headers */ = {isa = PBXBuildFile; fileRef = A70E62DE16C24DDF009B47BF /* DTDictationPlaceholderView.h */; };
 		A70E62E316C24DDF009B47BF /* DTDictationPlaceholderView.m in Sources */ = {isa = PBXBuildFile; fileRef = A70E62DF16C24DDF009B47BF /* DTDictationPlaceholderView.m */; };
 		A70E62E416C24DDF009B47BF /* DTDictationPlaceholderView.m in Sources */ = {isa = PBXBuildFile; fileRef = A70E62DF16C24DDF009B47BF /* DTDictationPlaceholderView.m */; };
@@ -70,7 +71,7 @@
 		A72418171678BACE001362C4 /* iOS6.html in Resources */ = {isa = PBXBuildFile; fileRef = A72418161678BACE001362C4 /* iOS6.html */; };
 		A72C15C71592FAF70064A67F /* CoreTextIssues.html in Resources */ = {isa = PBXBuildFile; fileRef = A72C15C61592FAF70064A67F /* CoreTextIssues.html */; };
 		A72D975E1684B38B005F8BA5 /* DTCoreTextFunctions.h in Headers */ = {isa = PBXBuildFile; fileRef = A72D975C1684B38B005F8BA5 /* DTCoreTextFunctions.h */; };
-		A72D975F1684B38B005F8BA5 /* DTCoreTextFunctions.h in Headers */ = {isa = PBXBuildFile; fileRef = A72D975C1684B38B005F8BA5 /* DTCoreTextFunctions.h */; };
+		A72D975F1684B38B005F8BA5 /* DTCoreTextFunctions.h in Headers */ = {isa = PBXBuildFile; fileRef = A72D975C1684B38B005F8BA5 /* DTCoreTextFunctions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A72D97601684B38B005F8BA5 /* DTCoreTextFunctions.h in Headers */ = {isa = PBXBuildFile; fileRef = A72D975C1684B38B005F8BA5 /* DTCoreTextFunctions.h */; };
 		A72D97611684B38B005F8BA5 /* DTCoreTextFunctions.h in Headers */ = {isa = PBXBuildFile; fileRef = A72D975C1684B38B005F8BA5 /* DTCoreTextFunctions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A72D97621684B38B005F8BA5 /* DTCoreTextFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = A72D975D1684B38B005F8BA5 /* DTCoreTextFunctions.m */; };
@@ -243,7 +244,7 @@
 		A788CAA5148648D700E1AFD9 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A76E5B4812DD9AF500711782 /* QuartzCore.framework */; };
 		A78C241115073BC50045651E /* TextBoxes.html in Resources */ = {isa = PBXBuildFile; fileRef = A78C241015073BC50045651E /* TextBoxes.html */; };
 		A78EEA6216774B5F003B5540 /* UIFont+DTCoreText.h in Headers */ = {isa = PBXBuildFile; fileRef = A78EEA6016774B5F003B5540 /* UIFont+DTCoreText.h */; };
-		A78EEA6316774B5F003B5540 /* UIFont+DTCoreText.h in Headers */ = {isa = PBXBuildFile; fileRef = A78EEA6016774B5F003B5540 /* UIFont+DTCoreText.h */; };
+		A78EEA6316774B5F003B5540 /* UIFont+DTCoreText.h in Headers */ = {isa = PBXBuildFile; fileRef = A78EEA6016774B5F003B5540 /* UIFont+DTCoreText.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A78EEA6416774B5F003B5540 /* UIFont+DTCoreText.m in Sources */ = {isa = PBXBuildFile; fileRef = A78EEA6116774B5F003B5540 /* UIFont+DTCoreText.m */; };
 		A78EEA6516774B5F003B5540 /* UIFont+DTCoreText.m in Sources */ = {isa = PBXBuildFile; fileRef = A78EEA6116774B5F003B5540 /* UIFont+DTCoreText.m */; };
 		A7949A0014C6256B00A8CCDE /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A79499FF14C6256B00A8CCDE /* libxml2.dylib */; };
@@ -319,7 +320,7 @@
 		A7E3A5C6169360E5007A526B /* KeepMeTogether.html in Resources */ = {isa = PBXBuildFile; fileRef = A7E3A5C5169360E5007A526B /* KeepMeTogether.html */; };
 		A7E3A5CC169443B6007A526B /* AppleConverted.html in Resources */ = {isa = PBXBuildFile; fileRef = A7E3A5CB169443B6007A526B /* AppleConverted.html */; };
 		A7EB849D168B3E9D00D686B7 /* DTHTMLParserNode.h in Headers */ = {isa = PBXBuildFile; fileRef = A7EB849B168B3E9D00D686B7 /* DTHTMLParserNode.h */; };
-		A7EB849E168B3E9D00D686B7 /* DTHTMLParserNode.h in Headers */ = {isa = PBXBuildFile; fileRef = A7EB849B168B3E9D00D686B7 /* DTHTMLParserNode.h */; };
+		A7EB849E168B3E9D00D686B7 /* DTHTMLParserNode.h in Headers */ = {isa = PBXBuildFile; fileRef = A7EB849B168B3E9D00D686B7 /* DTHTMLParserNode.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A7EB849F168B3E9D00D686B7 /* DTHTMLParserNode.h in Headers */ = {isa = PBXBuildFile; fileRef = A7EB849B168B3E9D00D686B7 /* DTHTMLParserNode.h */; };
 		A7EB84A0168B3E9D00D686B7 /* DTHTMLParserNode.h in Headers */ = {isa = PBXBuildFile; fileRef = A7EB849B168B3E9D00D686B7 /* DTHTMLParserNode.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A7EB84A1168B3E9D00D686B7 /* DTHTMLParserNode.m in Sources */ = {isa = PBXBuildFile; fileRef = A7EB849C168B3E9D00D686B7 /* DTHTMLParserNode.m */; };
@@ -327,7 +328,7 @@
 		A7EB84A3168B3E9D00D686B7 /* DTHTMLParserNode.m in Sources */ = {isa = PBXBuildFile; fileRef = A7EB849C168B3E9D00D686B7 /* DTHTMLParserNode.m */; };
 		A7EB84A4168B3E9D00D686B7 /* DTHTMLParserNode.m in Sources */ = {isa = PBXBuildFile; fileRef = A7EB849C168B3E9D00D686B7 /* DTHTMLParserNode.m */; };
 		A7EB84A7168B3EC000D686B7 /* DTHTMLParserTextNode.h in Headers */ = {isa = PBXBuildFile; fileRef = A7EB84A5168B3EC000D686B7 /* DTHTMLParserTextNode.h */; };
-		A7EB84A8168B3EC000D686B7 /* DTHTMLParserTextNode.h in Headers */ = {isa = PBXBuildFile; fileRef = A7EB84A5168B3EC000D686B7 /* DTHTMLParserTextNode.h */; };
+		A7EB84A8168B3EC000D686B7 /* DTHTMLParserTextNode.h in Headers */ = {isa = PBXBuildFile; fileRef = A7EB84A5168B3EC000D686B7 /* DTHTMLParserTextNode.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A7EB84A9168B3EC000D686B7 /* DTHTMLParserTextNode.h in Headers */ = {isa = PBXBuildFile; fileRef = A7EB84A5168B3EC000D686B7 /* DTHTMLParserTextNode.h */; };
 		A7EB84AA168B3EC000D686B7 /* DTHTMLParserTextNode.h in Headers */ = {isa = PBXBuildFile; fileRef = A7EB84A5168B3EC000D686B7 /* DTHTMLParserTextNode.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A7EB84AB168B3EC000D686B7 /* DTHTMLParserTextNode.m in Sources */ = {isa = PBXBuildFile; fileRef = A7EB84A6168B3EC000D686B7 /* DTHTMLParserTextNode.m */; };
@@ -627,11 +628,11 @@
 /* End PBXBuildRule section */
 
 /* Begin PBXContainerItemProxy section */
-		05AA282B16DFD8CA00E5BEF5 /* PBXContainerItemProxy */ = {
+		057B9227171C205E00D0F0FC /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = A7E383AB160DFEA700CF72D6 /* DTFoundation.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 052B1CDF16C6856E005C3CA2;
+			proxyType = 1;
+			remoteGlobalIDString = 052B1CDE16C6856E005C3CA2;
 			remoteInfo = DTFoundationMac;
 		};
 		A70E62FF16C254EB009B47BF /* PBXContainerItemProxy */ = {
@@ -998,6 +999,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				057B9230171C21B400D0F0FC /* DTFoundationMac.framework in Frameworks */,
 				C7A426AE16D76F1E00B66CB6 /* QuartzCore.framework in Frameworks */,
 				E2262DC71638331500BFDAD7 /* Cocoa.framework in Frameworks */,
 				E2262E031638346200BFDAD7 /* AppKit.framework in Frameworks */,
@@ -1501,12 +1503,14 @@
 				A760F54014F56E8E00AD1B0E /* DTImage+HTML.h in Headers */,
 				A7081EA415036460002987F1 /* DTTextBlock.h in Headers */,
 				A7A672BB1532F2D100920A18 /* DTCompatibility.h in Headers */,
-				36F8CECE1593AA3D00E9599C /* DTHTMLAttributedStringBuilder.h in Headers */,
-				A78EEA6316774B5F003B5540 /* UIFont+DTCoreText.h in Headers */,
 				A72D975F1684B38B005F8BA5 /* DTCoreTextFunctions.h in Headers */,
-				A73AE7921686FC6A009CF8C3 /* DTHTMLWriter.h in Headers */,
+				A70E62D716C24905009B47BF /* DTDictationPlaceholderTextAttachment.h in Headers */,
+				A70E62E116C24DDF009B47BF /* DTDictationPlaceholderView.h in Headers */,
 				A7EB849E168B3E9D00D686B7 /* DTHTMLParserNode.h in Headers */,
 				A7EB84A8168B3EC000D686B7 /* DTHTMLParserTextNode.h in Headers */,
+				A78EEA6316774B5F003B5540 /* UIFont+DTCoreText.h in Headers */,
+				36F8CECE1593AA3D00E9599C /* DTHTMLAttributedStringBuilder.h in Headers */,
+				A73AE7921686FC6A009CF8C3 /* DTHTMLWriter.h in Headers */,
 				A7EB84B8168B948000D686B7 /* DTHTMLElementBR.h in Headers */,
 				A7EB84C2168B973A00D686B7 /* DTHTMLElementText.h in Headers */,
 				A7EB84CC168B9A8500D686B7 /* DTHTMLElementAttachment.h in Headers */,
@@ -1514,8 +1518,6 @@
 				A7EB84E6168C657100D686B7 /* DTHTMLElementLI.h in Headers */,
 				A7EB853A168FA33500D686B7 /* DTHTMLElementStylesheet.h in Headers */,
 				A060479316A8B5770000CAA1 /* DTAttributedLabel.h in Headers */,
-				A70E62D716C24905009B47BF /* DTDictationPlaceholderTextAttachment.h in Headers */,
-				A70E62E116C24DDF009B47BF /* DTDictationPlaceholderView.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1670,9 +1672,9 @@
 			productReference = A70F119B14863198009202BF /* DTCoreText.framework */;
 			productType = "com.apple.product-type.bundle";
 		};
-		A70F11DD148632CD009202BF /* Static Library */ = {
+		A70F11DD148632CD009202BF /* DTCoreText */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = A70F11E6148632CD009202BF /* Build configuration list for PBXNativeTarget "Static Library" */;
+			buildConfigurationList = A70F11E6148632CD009202BF /* Build configuration list for PBXNativeTarget "DTCoreText" */;
 			buildPhases = (
 				A70F11DA148632CD009202BF /* Sources */,
 				A70F11DB148632CD009202BF /* Frameworks */,
@@ -1685,7 +1687,7 @@
 				A7B4E2E81686FE1B00717707 /* PBXTargetDependency */,
 				A7E383E8160DFFDE00CF72D6 /* PBXTargetDependency */,
 			);
-			name = "Static Library";
+			name = DTCoreText;
 			productName = DTCoreText;
 			productReference = A70F11DE148632CD009202BF /* libDTCoreText.a */;
 			productType = "com.apple.product-type.library.static";
@@ -1729,9 +1731,9 @@
 			productReference = A7949A5814CC456000A8CCDE /* MacUnitTest.octest */;
 			productType = "com.apple.product-type.bundle";
 		};
-		A7F7EF761573603100F5A4D0 /* Static Library (no DTFoundation) */ = {
+		A7F7EF761573603100F5A4D0 /* DTCoreText (no DTFoundation) */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = A7F7EFCA1573603100F5A4D0 /* Build configuration list for PBXNativeTarget "Static Library (no DTFoundation)" */;
+			buildConfigurationList = A7F7EFCA1573603100F5A4D0 /* Build configuration list for PBXNativeTarget "DTCoreText (no DTFoundation)" */;
 			buildPhases = (
 				A7F7EF771573603100F5A4D0 /* Sources */,
 				A7F7EF9F1573603100F5A4D0 /* Frameworks */,
@@ -1742,14 +1744,14 @@
 			);
 			dependencies = (
 			);
-			name = "Static Library (no DTFoundation)";
+			name = "DTCoreText (no DTFoundation)";
 			productName = DTCoreText;
 			productReference = A7F7EFCD1573603100F5A4D0 /* libDTCoreText_no_DTFoundation.a */;
 			productType = "com.apple.product-type.library.static";
 		};
-		E2262DC51638331500BFDAD7 /* Mac Framework */ = {
+		E2262DC51638331500BFDAD7 /* DTCoreTextMac */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = E2262DD21638331500BFDAD7 /* Build configuration list for PBXNativeTarget "Mac Framework" */;
+			buildConfigurationList = E2262DD21638331500BFDAD7 /* Build configuration list for PBXNativeTarget "DTCoreTextMac" */;
 			buildPhases = (
 				E2262DC11638331500BFDAD7 /* Sources */,
 				E2262DC21638331500BFDAD7 /* Frameworks */,
@@ -1761,7 +1763,7 @@
 			);
 			dependencies = (
 			);
-			name = "Mac Framework";
+			name = DTCoreTextMac;
 			productName = DTCoreText;
 			productReference = E2262DC61638331500BFDAD7 /* DTCoreText.framework */;
 			productType = "com.apple.product-type.framework";
@@ -1798,12 +1800,12 @@
 			targets = (
 				1D6058900D05DD3D006BFB54 /* DemoApp */,
 				A70F119A14863198009202BF /* Static Framework */,
-				A70F11DD148632CD009202BF /* Static Library */,
 				A788CA671486456100E1AFD9 /* UnitTest */,
 				A7949A5714CC456000A8CCDE /* MacUnitTest */,
 				A7174BC414F288F900C57464 /* Documentation */,
-				A7F7EF761573603100F5A4D0 /* Static Library (no DTFoundation) */,
-				E2262DC51638331500BFDAD7 /* Mac Framework */,
+				A70F11DD148632CD009202BF /* DTCoreText */,
+				A7F7EF761573603100F5A4D0 /* DTCoreText (no DTFoundation) */,
+				E2262DC51638331500BFDAD7 /* DTCoreTextMac */,
 			);
 		};
 /* End PBXProject section */
@@ -2324,7 +2326,7 @@
 /* Begin PBXTargetDependency section */
 		A70E630016C254EB009B47BF /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = A70F11DD148632CD009202BF /* Static Library */;
+			target = A70F11DD148632CD009202BF /* DTCoreText */;
 			targetProxy = A70E62FF16C254EB009B47BF /* PBXContainerItemProxy */;
 		};
 		A7358D6C1680F1BB005F1352 /* PBXTargetDependency */ = {
@@ -2334,7 +2336,7 @@
 		};
 		A788CA621486428F00E1AFD9 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = A70F11DD148632CD009202BF /* Static Library */;
+			target = A70F11DD148632CD009202BF /* DTCoreText */;
 			targetProxy = A788CA611486428F00E1AFD9 /* PBXContainerItemProxy */;
 		};
 		A7B4E2E81686FE1B00717707 /* PBXTargetDependency */ = {
@@ -2827,7 +2829,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		A70F11E6148632CD009202BF /* Build configuration list for PBXNativeTarget "Static Library" */ = {
+		A70F11E6148632CD009202BF /* Build configuration list for PBXNativeTarget "DTCoreText" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				A70F11E7148632CD009202BF /* Debug */,
@@ -2863,7 +2865,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		A7F7EFCA1573603100F5A4D0 /* Build configuration list for PBXNativeTarget "Static Library (no DTFoundation)" */ = {
+		A7F7EFCA1573603100F5A4D0 /* Build configuration list for PBXNativeTarget "DTCoreText (no DTFoundation)" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				A7F7EFCB1573603100F5A4D0 /* Debug */,
@@ -2881,7 +2883,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		E2262DD21638331500BFDAD7 /* Build configuration list for PBXNativeTarget "Mac Framework" */ = {
+		E2262DD21638331500BFDAD7 /* Build configuration list for PBXNativeTarget "DTCoreTextMac" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				E2262DD31638331500BFDAD7 /* Debug */,

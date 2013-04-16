@@ -112,3 +112,5 @@ In the following "Mac" means the initWithHTML: methods there, "DTCoreText" means
 - Mac seems to ignore list-style-position:outside, iOS does the right thing.
 
 If you find an issue then you are welcome to fix it and contribute your fix via a GitHub pull request.
+
+
