@@ -9,7 +9,7 @@
 #import "DTTextAttachment.h"
 #import "DTCoreText.h"
 
-#import "NSData+Base64.h"
+#import <DTFoundation/NSData+Base64.h>
 
 static NSCache *imageCache = nil;
 

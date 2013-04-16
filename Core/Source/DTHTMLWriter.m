@@ -8,7 +8,7 @@
 
 #import "DTHTMLWriter.h"
 #import "DTCoreText.h"
-#import "DTVersion.h"
+#import <DTFoundation/DTVersion.h>
 
 @implementation DTHTMLWriter
 {

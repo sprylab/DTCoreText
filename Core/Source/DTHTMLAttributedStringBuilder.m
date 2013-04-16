@@ -13,8 +13,8 @@
 #import "DTHTMLElementBR.h"
 #import "DTHTMLElementStylesheet.h"
 
-#import "DTVersion.h"
-#import "DTHTMLParser.h"
+#import <DTFoundation/DTVersion.h>
+#import <DTHTMLParser/DTHTMLParser.h>
 
 @interface DTHTMLAttributedStringBuilder ()
 

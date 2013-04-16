@@ -8,7 +8,7 @@
 
 #import "DTAttributedTextContentView.h"
 
-#import "DTScrollView.h"
+#import <DTFoundation/DTScrollView.h>
 
 @interface DTAttributedTextView : DTScrollView
 

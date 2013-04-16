@@ -57,7 +57,6 @@
 		A70E62E316C24DDF009B47BF /* DTDictationPlaceholderView.m in Sources */ = {isa = PBXBuildFile; fileRef = A70E62DF16C24DDF009B47BF /* DTDictationPlaceholderView.m */; };
 		A70E62E416C24DDF009B47BF /* DTDictationPlaceholderView.m in Sources */ = {isa = PBXBuildFile; fileRef = A70E62DF16C24DDF009B47BF /* DTDictationPlaceholderView.m */; };
 		A70E62E516C24DDF009B47BF /* DTDictationPlaceholderView.m in Sources */ = {isa = PBXBuildFile; fileRef = A70E62DF16C24DDF009B47BF /* DTDictationPlaceholderView.m */; };
-		A70E62FB16C253EC009B47BF /* libDTFoundation_Mac.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A7B4E2D41686FDB300717707 /* libDTFoundation_Mac.a */; };
 		A70E62FC16C2540C009B47BF /* DTHTMLElementStylesheet.m in Sources */ = {isa = PBXBuildFile; fileRef = A7EB8538168FA33300D686B7 /* DTHTMLElementStylesheet.m */; };
 		A70E630116C254F5009B47BF /* libDTCoreText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A70F11DE148632CD009202BF /* libDTCoreText.a */; };
 		A70E630216C25734009B47BF /* Oliver.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A788CA2814863EF100E1AFD9 /* Oliver.jpg */; };
@@ -310,8 +309,6 @@
 		A7D63CDA1611B9AC00D4712A /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A7D63CD91611B9AC00D4712A /* Default-568h@2x.png */; };
 		A7DBC1AA1689B846003F1D38 /* ListItemBulletColorAndFont.html in Resources */ = {isa = PBXBuildFile; fileRef = A7DBC1A91689B846003F1D38 /* ListItemBulletColorAndFont.html */; };
 		A7DBC1AB1689B8C5003F1D38 /* ListItemBulletColorAndFont.html in Resources */ = {isa = PBXBuildFile; fileRef = A7DBC1A91689B846003F1D38 /* ListItemBulletColorAndFont.html */; };
-		A7DBC1B01689B910003F1D38 /* libDTFoundation_Mac.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A7B4E2D41686FDB300717707 /* libDTFoundation_Mac.a */; };
-		A7DBC1B11689B91E003F1D38 /* libDTHTMLParser.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A7B4E2D81686FDB300717707 /* libDTHTMLParser.a */; };
 		A7DBC1B31689B989003F1D38 /* SpaceBetweenUnderlines.html in Resources */ = {isa = PBXBuildFile; fileRef = A7DBC1B21689B989003F1D38 /* SpaceBetweenUnderlines.html */; };
 		A7DBC1B41689B989003F1D38 /* SpaceBetweenUnderlines.html in Resources */ = {isa = PBXBuildFile; fileRef = A7DBC1B21689B989003F1D38 /* SpaceBetweenUnderlines.html */; };
 		A7DBC1B71689BA20003F1D38 /* DTHTMLAttributedStringBuilderTest.m in Sources */ = {isa = PBXBuildFile; fileRef = A7DBC1B61689BA20003F1D38 /* DTHTMLAttributedStringBuilderTest.m */; };
@@ -488,7 +485,6 @@
 		A7F7EFC51573603100F5A4D0 /* DTCoreText.h in Headers */ = {isa = PBXBuildFile; fileRef = A70B4C9E1486558200873A4A /* DTCoreText.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A7F7EFC61573603100F5A4D0 /* DTImage+HTML.h in Headers */ = {isa = PBXBuildFile; fileRef = A7C5D01314D7E3BB00AF1D75 /* DTImage+HTML.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A7F7EFC81573603100F5A4D0 /* DTCompatibility.h in Headers */ = {isa = PBXBuildFile; fileRef = A7A672B91532F2D100920A18 /* DTCompatibility.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C707374016D4B89F009A1D3E /* libDTHTMLParser.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A7B4E2D81686FDB300717707 /* libDTHTMLParser.a */; };
 		C7A4261416D62ECA00B66CB6 /* DTAttributedTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = A788C91514863E8700E1AFD9 /* DTAttributedTextView.m */; };
 		C7A4261B16D6391600B66CB6 /* DTAttributedTextContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = A788C91314863E8700E1AFD9 /* DTAttributedTextContentView.m */; };
 		C7A4261E16D63BD600B66CB6 /* NSView+UIVIew.h in Headers */ = {isa = PBXBuildFile; fileRef = C7A4261C16D63BD500B66CB6 /* NSView+UIVIew.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -638,27 +634,6 @@
 			remoteGlobalIDString = 052B1CDF16C6856E005C3CA2;
 			remoteInfo = DTFoundationMac;
 		};
-		05F4021516D2B2900081E7EF /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = A7E383AB160DFEA700CF72D6 /* DTFoundation.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = A7E889A416A9B190009EF0DF;
-			remoteInfo = "DTUTI (Mac)";
-		};
-		A70E62F616C253C6009B47BF /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = A7E383AB160DFEA700CF72D6 /* DTFoundation.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 3D7CE53D166613B60028D339;
-			remoteInfo = "DTHTMLParser (Mac)";
-		};
-		A70E62F816C253D0009B47BF /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = A7E383AB160DFEA700CF72D6 /* DTFoundation.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = A710A4FF1607556000437D36;
-			remoteInfo = "Static Library (Mac)";
-		};
 		A70E62FF16C254EB009B47BF /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
@@ -687,26 +662,12 @@
 			remoteGlobalIDString = A7D60FCF15D3B0BC00AEDD1B;
 			remoteInfo = "Unit Tests";
 		};
-		A7B4E2D31686FDB300717707 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = A7E383AB160DFEA700CF72D6 /* DTFoundation.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = A710A5001607556000437D36;
-			remoteInfo = "Static Library (Mac)";
-		};
 		A7B4E2D51686FDB300717707 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = A7E383AB160DFEA700CF72D6 /* DTFoundation.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = A7E383C2160DFEDB00CF72D6;
 			remoteInfo = DTHTMLParser;
-		};
-		A7B4E2D71686FDB300717707 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = A7E383AB160DFEA700CF72D6 /* DTFoundation.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 3D7CE547166613B60028D339;
-			remoteInfo = "DTHTMLParser (Mac)";
 		};
 		A7B4E2D91686FDB300717707 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -728,20 +689,6 @@
 			proxyType = 1;
 			remoteGlobalIDString = A7E383C1160DFEDB00CF72D6;
 			remoteInfo = DTHTMLParser;
-		};
-		A7DBC1AC1689B8FC003F1D38 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = A7E383AB160DFEA700CF72D6 /* DTFoundation.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = A710A4FF1607556000437D36;
-			remoteInfo = "Static Library (Mac)";
-		};
-		A7DBC1AE1689B900003F1D38 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = A7E383AB160DFEA700CF72D6 /* DTFoundation.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 3D7CE53D166613B60028D339;
-			remoteInfo = "DTHTMLParser (Mac)";
 		};
 		A7E383B6160DFEA800CF72D6 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -1032,8 +979,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A7DBC1B11689B91E003F1D38 /* libDTHTMLParser.a in Frameworks */,
-				A7DBC1B01689B910003F1D38 /* libDTFoundation_Mac.a in Frameworks */,
 				A7F5671D14D8469000D1F167 /* Cocoa.framework in Frameworks */,
 				A7C1CC0F14D6CFD5008D6468 /* AppKit.framework in Frameworks */,
 				A7949A5914CC456000A8CCDE /* SenTestingKit.framework in Frameworks */,
@@ -1054,8 +999,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				C7A426AE16D76F1E00B66CB6 /* QuartzCore.framework in Frameworks */,
-				C707374016D4B89F009A1D3E /* libDTHTMLParser.a in Frameworks */,
-				A70E62FB16C253EC009B47BF /* libDTFoundation_Mac.a in Frameworks */,
 				E2262DC71638331500BFDAD7 /* Cocoa.framework in Frameworks */,
 				E2262E031638346200BFDAD7 /* AppKit.framework in Frameworks */,
 				E2262E021638345E00BFDAD7 /* libxml2.dylib in Frameworks */,
@@ -1437,14 +1380,11 @@
 			isa = PBXGroup;
 			children = (
 				A7E383B7160DFEA800CF72D6 /* DTFoundation.framework */,
-				A7E383B9160DFEA800CF72D6 /* libDTFoundation.a */,
 				A7B4E2D21686FDB300717707 /* UnitTests.octest */,
-				A7B4E2D41686FDB300717707 /* libDTFoundation_Mac.a */,
+				A7E383B9160DFEA800CF72D6 /* libDTFoundation.a */,
 				A7B4E2D61686FDB300717707 /* libDTHTMLParser.a */,
-				A7B4E2D81686FDB300717707 /* libDTHTMLParser.a */,
 				A7B4E2DA1686FDB300717707 /* libDTZipArchive.a */,
 				A7B4E2E01686FDB300717707 /* libDTUTI.a */,
-				05F4021616D2B2900081E7EF /* libDTUTI.a */,
 				05AA282C16DFD8CA00E5BEF5 /* DTFoundationMac.framework */,
 			);
 			name = Products;
@@ -1783,8 +1723,6 @@
 				A758FC9F14DBD77D007DF8B2 /* PBXBuildRule */,
 			);
 			dependencies = (
-				A7DBC1AF1689B900003F1D38 /* PBXTargetDependency */,
-				A7DBC1AD1689B8FC003F1D38 /* PBXTargetDependency */,
 			);
 			name = MacUnitTest;
 			productName = MacUnitTest;
@@ -1822,8 +1760,6 @@
 				E2262E001638341B00BFDAD7 /* PBXBuildRule */,
 			);
 			dependencies = (
-				A70E62F916C253D0009B47BF /* PBXTargetDependency */,
-				A70E62F716C253C6009B47BF /* PBXTargetDependency */,
 			);
 			name = "Mac Framework";
 			productName = DTCoreText;
@@ -1880,13 +1816,6 @@
 			remoteRef = 05AA282B16DFD8CA00E5BEF5 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		05F4021616D2B2900081E7EF /* libDTUTI.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libDTUTI.a;
-			remoteRef = 05F4021516D2B2900081E7EF /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
 		A7B4E2D21686FDB300717707 /* UnitTests.octest */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
@@ -1894,26 +1823,11 @@
 			remoteRef = A7B4E2D11686FDB300717707 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		A7B4E2D41686FDB300717707 /* libDTFoundation_Mac.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libDTFoundation_Mac.a;
-			remoteRef = A7B4E2D31686FDB300717707 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
 		A7B4E2D61686FDB300717707 /* libDTHTMLParser.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
 			path = libDTHTMLParser.a;
 			remoteRef = A7B4E2D51686FDB300717707 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		A7B4E2D81686FDB300717707 /* libDTHTMLParser.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			name = libDTHTMLParser.a;
-			path = libDTHTMLParser_Mac.a;
-			remoteRef = A7B4E2D71686FDB300717707 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		A7B4E2DA1686FDB300717707 /* libDTZipArchive.a */ = {
@@ -2408,16 +2322,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		A70E62F716C253C6009B47BF /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = "DTHTMLParser (Mac)";
-			targetProxy = A70E62F616C253C6009B47BF /* PBXContainerItemProxy */;
-		};
-		A70E62F916C253D0009B47BF /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = "Static Library (Mac)";
-			targetProxy = A70E62F816C253D0009B47BF /* PBXContainerItemProxy */;
-		};
 		A70E630016C254EB009B47BF /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = A70F11DD148632CD009202BF /* Static Library */;
@@ -2437,16 +2341,6 @@
 			isa = PBXTargetDependency;
 			name = DTHTMLParser;
 			targetProxy = A7B4E2E71686FE1B00717707 /* PBXContainerItemProxy */;
-		};
-		A7DBC1AD1689B8FC003F1D38 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = "Static Library (Mac)";
-			targetProxy = A7DBC1AC1689B8FC003F1D38 /* PBXContainerItemProxy */;
-		};
-		A7DBC1AF1689B900003F1D38 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = "DTHTMLParser (Mac)";
-			targetProxy = A7DBC1AE1689B900003F1D38 /* PBXContainerItemProxy */;
 		};
 		A7E383E8160DFFDE00CF72D6 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -2584,7 +2478,7 @@
 				PRODUCT_NAME = DTCoreText;
 				PUBLIC_HEADERS_FOLDER_PATH = ../../Headers/DTCoreText;
 				SKIP_INSTALL = YES;
-				USER_HEADER_SEARCH_PATHS = "Core/Source Core/Externals/** Core/Externals/DTFoundation/Core/Source/**";
+				USER_HEADER_SEARCH_PATHS = "\"$(BUILT_PRODUCTS_DIR)/../../Headers\"";
 			};
 			name = Debug;
 		};
@@ -2602,7 +2496,7 @@
 				PRODUCT_NAME = DTCoreText;
 				PUBLIC_HEADERS_FOLDER_PATH = ../../Headers/DTCoreText;
 				SKIP_INSTALL = YES;
-				USER_HEADER_SEARCH_PATHS = "Core/Source Core/Externals/** Core/Externals/DTFoundation/Core/Source/**";
+				USER_HEADER_SEARCH_PATHS = "\"$(BUILT_PRODUCTS_DIR)/../../Headers\"";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
