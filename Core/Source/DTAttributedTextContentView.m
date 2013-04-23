@@ -431,7 +431,8 @@ static Class _layerClassToUseForDTAttributedTextContentView = nil;
 #if TARGET_OS_IPHONE
 	CGColorRef clearColor = [[UIColor clearColor] CGColor];
 	CGContextSetFillColorWithColor(ctx, clearColor);
-	CGColorRelease(clearColor);
+	// this is wrong, commented out
+	//CGColorRelease(clearColor);
 #else
 	CGColorRef clearColor = CGColorCreateGenericRGB(0, 0, 0, 0);
 	CGContextSetFillColorWithColor(ctx, clearColor);
