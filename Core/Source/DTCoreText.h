@@ -12,7 +12,12 @@
 #import "DTImage+HTML.h"
 
 // common utilities
-#import "CGUtils.h"
+#if TARGET_OS_IPHONE
+#import <DTFoundation/DTUtils.h>
+#else
+#import <DTFoundationMac/DTUtils.h>
+#endif
+
 #if TARGET_OS_IPHONE
 #import "DTCoreTextFunctions.h"
 #endif
@@ -51,6 +56,8 @@
 #import "DTLinkButton.h"
 #import "DTWebVideoView.h"
 #import "NSAttributedStringRunDelegates.h"
+
+#import "DTAttributedLabel.h"
 #import "DTAttributedTextCell.h"
 //#import "DTAttributedTextContentView.h"
 //#import "DTAttributedTextView.h"

@@ -1,6 +1,6 @@
 //
 //  DTCoreTextLayouter.m
-//  CoreTextExtensions
+//  DTCoreText
 //
 //  Created by Oliver Drobnik on 1/24/11.
 //  Copyright 2011 Drobnik.com. All rights reserved.
@@ -19,7 +19,7 @@
 #endif
 
 - (CTFramesetterRef)framesetter;
-- (void)discardFramesetter;
+- (void)_discardFramesetter;
 
 @end
 
@@ -29,14 +29,11 @@
 @implementation DTCoreTextLayouter
 {
 	CTFramesetterRef _framesetter;
-	
 	NSAttributedString *_attributedString;
-	
-	NSMutableArray *frames;
-	
 	BOOL _shouldCacheLayoutFrames;
 	NSCache *_layoutFrameCache;
 }
+
 @synthesize selfLock;
 
 - (id)initWithAttributedString:(NSAttributedString *)attributedString
@@ -58,7 +55,7 @@
 - (void)dealloc
 {
 	SYNCHRONIZE_START(self)	// just to be sure
-	[self discardFramesetter];
+	[self _discardFramesetter];
 	SYNCHRONIZE_END(self)
 
 #if !OS_OBJECT_USE_OBJC
@@ -66,35 +63,6 @@
 #endif
 }
 
-- (NSString *)description
-{
-	return [self.frames description];
-}
-
-- (NSInteger)numberOfFrames
-{
-	return [self.frames count];
-}
-
-- (CGSize)suggestedFrameSizeToFitEntireStringConstraintedToWidth:(CGFloat)width
-{
-	// Note: this returns an unreliable measure prior to 4.2 for very long documents
-	CGSize neededSize = CTFramesetterSuggestFrameSizeWithConstraints(self.framesetter, CFRangeMake(0, 0), NULL, 
-																	 CGSizeMake(width, CGFLOAT_MAX),
-																	 NULL);
-
-	
-	
-	
-	// round up because generally we don't want non-integer view sizes
-	neededSize.width = ceilf(neededSize.width);
-	neededSize.height = ceilf(neededSize.height);
-	
-	return neededSize;
-}
-
-
-// a temporary frame
 - (DTCoreTextLayoutFrame *)layoutFrameWithRect:(CGRect)frame range:(NSRange)range
 {
 	DTCoreTextLayoutFrame *newFrame = nil;
@@ -134,17 +102,16 @@
 	return newFrame;
 }
 
-// reusable frame
-- (void)addTextFrameWithFrame:(CGRect)frame
+- (void)_discardFramesetter
 {
-	DTCoreTextLayoutFrame *newFrame = [self layoutFrameWithRect:frame range:NSMakeRange(0, 0)];
-	[self.frames addObject:newFrame];
-}
-
-- (DTCoreTextLayoutFrame *)layoutFrameAtIndex:(NSInteger)index
-{
-	return [self.frames objectAtIndex:index];
-	
+	{
+		// framesetter needs to go
+		if (_framesetter)
+		{
+			CFRelease(_framesetter);
+			_framesetter = NULL;
+		}
+	}
 }
 
 #pragma mark Properties
@@ -164,19 +131,6 @@
 	return _framesetter;
 }
 
-
-- (void)discardFramesetter
-{
-	{
-		// framesetter needs to go
-		if (_framesetter)
-		{
-			CFRelease(_framesetter);
-			_framesetter = NULL;
-		}
-	}
-}
-
 - (void)setAttributedString:(NSAttributedString *)attributedString
 {
 	SYNCHRONIZE_START(self)
@@ -185,10 +139,10 @@
 		{
 			_attributedString = attributedString;
 			
-			[self discardFramesetter];
+			[self _discardFramesetter];
 			
 			// clear the cache
-			_layoutFrameCache = nil;
+			[_layoutFrameCache removeAllObjects];
 		}
 	}
 	SYNCHRONIZE_END(self)
@@ -197,16 +151,6 @@
 - (NSAttributedString *)attributedString
 {
 	return _attributedString;
-}
-
-- (NSMutableArray *)frames
-{
-	if (!frames)
-	{
-		frames = [[NSMutableArray alloc] init];
-	}
-	
-	return frames;
 }
 
 - (void)setShouldCacheLayoutFrames:(BOOL)shouldCacheLayoutFrames
@@ -226,10 +170,7 @@
 	}
 }
 
-
-
 @synthesize attributedString = _attributedString;
-@synthesize frames = _frames;
 @synthesize framesetter = _framesetter;
 @synthesize shouldCacheLayoutFrames = _shouldCacheLayoutFrames;
 

@@ -1,6 +1,6 @@
 //
 //  DTAttributedTextView.m
-//  CoreTextExtensions
+//  DTCoreText
 //
 //  Created by Oliver Drobnik on 1/12/11.
 //  Copyright 2011 Drobnik.com. All rights reserved.
@@ -17,7 +17,7 @@
 #endif
 }
 
-- (void)setup;
+- (void)_setup;
 
 @end
 
@@ -25,13 +25,14 @@
 
 @implementation DTAttributedTextView
 {
-	DTAttributedTextContentView *_attributedTextContentView;
 	DTView *_backgroundView;
 
 	// these are pass-through, i.e. store until the content view is created
 	__unsafe_unretained id textDelegate;
 	NSAttributedString *_attributedString;
+	
 	BOOL _shouldDrawLinks;
+	BOOL _shouldDrawImages;
 }
 
 - (id)initWithFrame:(CGRect)frame
@@ -40,7 +41,7 @@
 	
 	if (self)
 	{
-		[self setup];
+		[self _setup];
 	}
 	
 	return self;
@@ -100,44 +101,30 @@
 
 - (void)awakeFromNib
 {
-	[self setup];
+	[self _setup];
 }
 
 // default
-- (void)setup
+- (void)_setup
 {
 #if !TARGET_OS_IPHONE
 	_originalFrame = self.frame;
 //	self.wantsLayer = YES;
 	self.drawsBackground = NO;
 #endif
-//	if (!self.backgroundColor)
-//	{
-		// TODO SG
-		//self.backgroundColor = [DTColor whiteColor];
-//		self.backgroundColor = [DTColor clearColor];
-//		self.opaque = NO;
-//		return;
-//	}
-/*
-	CGFloat alpha = [self.backgroundColor alphaComponent];
 	
-	if (alpha < 1.0)
-	{
-		self.opaque = NO;
-	}
-	else 
-	{
-		self.opaque = YES;
-	}
-	*/
 	self.autoresizesSubviews = NO;
+	
 #if TARGET_OS_IPHONE
 	self.clipsToBounds = YES;
 #else
 	self.attributedTextContentView;
 	// TODO SG nothing
 #endif
+	
+	// defaults
+	_shouldDrawLinks = YES;
+	_shouldDrawImages = YES;
 }
 
 // override class e.g. for mutable content view
@@ -153,45 +140,71 @@
 	
 	if (range.length != NSNotFound)
 	{
-		// get the line of the first index of the anchor range
-		DTCoreTextLayoutLine *line = [self.attributedTextContentView.layoutFrame lineContainingIndex:range.location];
-		
-#if TARGET_OS_IPHONE
-		// make sure we don't scroll too far
-		CGFloat maxScrollPos = self.contentSize.height - self.bounds.size.height + self.contentInset.bottom + self.contentInset.top;
-		CGFloat scrollPos = MIN(line.frame.origin.y, maxScrollPos);
-		
-		// scroll
-		[self setContentOffset:CGPointMake(0, scrollPos) animated:animated];
-#else
-		// TODO SG ??
-#endif
+		[self scrollRangeToVisible:range animated:animated];
 	}
+}
+
+- (void)scrollRangeToVisible:(NSRange)range animated:(BOOL)animated
+{
+	// get the line of the first index of the anchor range
+	DTCoreTextLayoutLine *line = [self.attributedTextContentView.layoutFrame lineContainingIndex:range.location];
+
+#if TARGET_OS_IPHONE
+	// make sure we don't scroll too far
+	CGFloat maxScrollPos = self.contentSize.height - self.bounds.size.height + self.contentInset.bottom + self.contentInset.top;
+	CGFloat scrollPos = MIN(line.frame.origin.y, maxScrollPos);
+
+	// scroll
+	[self setContentOffset:CGPointMake(0, scrollPos) animated:animated];
+#else
+	// TODO SG
+#endif
+}
+
+- (void)relayoutText
+{
+	// need to reset the layouter because otherwise we get the old framesetter or cached layout frames
+	_attributedTextContentView.layouter=nil;
+	
+	// here we're layouting the entire string, might be more efficient to only relayout the paragraphs that contain these attachments
+	[_attributedTextContentView relayoutText];
+	
+	// layout custom subviews for visible area
+	[self setNeedsLayout];
 }
 
 #pragma mark Notifications
 - (void)contentViewDidLayout:(NSNotification *)notification
 {
+	if (![NSThread mainThread])
+	{
+		[self performSelectorOnMainThread:@selector(contentViewDidLayout:) withObject:notification waitUntilDone:YES];
+		return;
+	}
+	
 	NSDictionary *userInfo = [notification userInfo];
 
 #if TARGET_OS_IPHONE
 	CGRect optimalFrame = [[userInfo objectForKey:@"OptimalFrame"] CGRectValue];
+	CGRect frame = DTEdgeInsetsInsetRect(self.bounds, self.contentInset);
 #else
 	CGRect optimalFrame = [[userInfo objectForKey:@"OptimalFrame"] rectValue];
+	CGRect frame = self.bounds;
 #endif
 
-	_attributedTextContentView.frame = optimalFrame;
-
+	// ignore possibly delayed layout notification for a different width
+	if (optimalFrame.size.width == frame.size.width)
+	{
+		_attributedTextContentView.frame = optimalFrame;
+		
 #if TARGET_OS_IPHONE
-	self.contentSize = [_attributedTextContentView intrinsicContentSize];
+		self.contentSize = [_attributedTextContentView intrinsicContentSize];
 #else
-	// TODO SG ??
-	CGSize contentSize = [_attributedTextContentView intrinsicContentSize];
-	[self.documentView setFrame:NSMakeRect(0, 0, contentSize.width, contentSize.height)];
-
-	// this sets background to transparent
-//	self.layer.backgroundColor = [self.backgroundColor CGColor];
+		// TODO SG ??
+		CGSize contentSize = [_attributedTextContentView intrinsicContentSize];
+		[self.documentView setFrame:NSMakeRect(0, 0, contentSize.width, contentSize.height)];
 #endif
+	}
 }
 
 #pragma mark Properties
@@ -212,6 +225,11 @@
 		frame = DTEdgeInsetsInsetRect(self.bounds, contentInset);
 #endif
 
+		if (frame.size.width<=0 || frame.size.height<=0)
+		{
+			frame = CGRectZero;
+		}
+		
 		_attributedTextContentView = [[classToUse alloc] initWithFrame:frame];
 		
 #if TARGET_OS_IPHONE
@@ -250,21 +268,38 @@
 /*
 - (void)setBackgroundColor:(DTColor *)newColor
 {
-	super.backgroundColor = newColor;
-
 	if ([newColor alphaComponent]<1.0)
 	{
-		self.attributedTextContentView.backgroundColor = [DTColor clearColor];
+		super.backgroundColor = newColor;
+		_attributedTextContentView.backgroundColor = [DTColor clearColor];
 		self.opaque = NO;
 	}
-	else
+	else 
 	{
-		if (self.attributedTextContentView.opaque)
+		super.backgroundColor = newColor;
+
+		if (_attributedTextContentView.opaque)
 		{
-			self.attributedTextContentView.backgroundColor = newColor;
+			_attributedTextContentView.backgroundColor = newColor;
 		}
 	}
-}*/
+}
+*/
+
+#if TARGET_OS_IPHONE
+- (void)setContentInset:(DTEdgeInsets)contentInset
+{
+	if (!DTEdgeInsetsEqualToEdgeInsets(self.contentInset, contentInset))
+	{
+		[super setContentInset:contentInset];
+		
+		// height does not matter, that will be determined anyhow
+		CGRect contentFrame = CGRectMake(0, 0, self.frame.size.width - self.contentInset.left - self.contentInset.right, _attributedTextContentView.frame.size.height);
+		
+		_attributedTextContentView.frame = contentFrame;
+	}
+}
+#endif
 
 - (DTView *)backgroundView
 {
@@ -356,13 +391,18 @@
 
 - (void)setFrame:(CGRect)frame
 {
-	if (!CGRectEqualToRect(self.frame, frame))
+	CGRect oldFrame = self.frame;
+	
+	if (!CGRectEqualToRect(oldFrame, frame))
 	{
-		if (self.frame.size.width != frame.size.width)
+		[super setFrame:frame]; // need to set own frame first because layout completion needs this updated frame
+		
+		if (oldFrame.size.width != frame.size.width)
 		{
 #if TARGET_OS_IPHONE
 			// height does not matter, that will be determined anyhow
-			CGRect contentFrame = CGRectMake(0, 0, frame.size.width - self.contentInset.left - self.contentInset.right, 0);
+			CGRect contentFrame = CGRectMake(0, 0, frame.size.width - self.contentInset.left - self.contentInset.right, _attributedTextContentView.frame.size.height);
+			
 			_attributedTextContentView.frame = contentFrame;
 #else
 			// TODO SG ??
@@ -370,7 +410,6 @@
 			_attributedTextContentView.frame = contentFrame;
 #endif
 		}
-		[super setFrame:frame];
 	}
 }
 
@@ -391,7 +430,13 @@
 - (void)setShouldDrawLinks:(BOOL)shouldDrawLinks
 {
 	_shouldDrawLinks = shouldDrawLinks;
-	_attributedTextContentView.shouldDrawLinks = YES;
+	_attributedTextContentView.shouldDrawLinks = _shouldDrawLinks;
+}
+
+- (void)setShouldDrawImages:(BOOL)shouldDrawImages
+{
+	_shouldDrawImages = shouldDrawImages;
+	_attributedTextContentView.shouldDrawImages = _shouldDrawImages;
 }
 
 @synthesize attributedTextContentView = _attributedTextContentView;

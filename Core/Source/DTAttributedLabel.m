@@ -8,18 +8,14 @@
 
 #import "DTAttributedLabel.h"
 #import "DTCoreTextLayoutFrame.h"
+#import <QuartzCore/QuartzCore.h>
 
 @implementation DTAttributedLabel
 
-- (DTCoreTextLayoutFrame *)layoutFrame
++ (Class)layerClass
 {
-    _flexibleHeight = NO;
-	DTCoreTextLayoutFrame * layoutFrame = [super layoutFrame];
-    layoutFrame.numberOfLines = self.numberOfLines;
-    layoutFrame.lineBreakMode = self.lineBreakMode;
-    layoutFrame.truncationString = self.truncationString;
-	layoutFrame.noLeadingOnFirstLine = YES;
-	return layoutFrame;
+	// most likely the label will be less than a screen size and so we don't want any tiling behavior
+	return [CALayer class];
 }
 
 - (id)initWithFrame:(CGRect)frame
@@ -30,12 +26,33 @@
 	{
 		// we want to relayout the text if height or width change
 		self.relayoutMask = DTAttributedTextContentViewRelayoutOnHeightChanged | DTAttributedTextContentViewRelayoutOnWidthChanged;
+		
+		self.layoutFrameHeightIsConstrainedByBounds = YES; // height is not flexible
+		self.shouldAddFirstLineLeading = NO;
 	}
 	
 	return self;
 }
 
+#pragma mark - Sizing
+
+- (CGSize)intrinsicContentSize
+{
+	if (!self.layoutFrame) // creates new layout frame if possible
+	{
+		return CGSizeMake(-1, -1);  // UIViewNoIntrinsicMetric as of iOS 6
+	}
+	
+	//  we have a layout frame and from this we get the needed size
+	return [_layoutFrame intrinsicContentFrame].size;
+}
+
 #pragma mark - Properties 
+
+- (NSInteger)numberOfLines
+{
+	return _numberOfLines;
+}
 
 - (void)setNumberOfLines:(NSInteger)numberOfLines
 {
@@ -44,6 +61,11 @@
         _numberOfLines = numberOfLines;
         [self relayoutText];
     }
+}
+
+- (NSLineBreakMode)lineBreakMode
+{
+	return _lineBreakMode;
 }
 
 - (void)setLineBreakMode:(NSLineBreakMode)lineBreakMode
@@ -55,23 +77,19 @@
     }
 }
 
-- (void)setTruncationString:(NSAttributedString *)trunctionString
+- (NSAttributedString*)truncationString
 {
-    if (trunctionString != _truncationString)
+	return _truncationString;
+}
+
+- (void)setTruncationString:(NSAttributedString *)truncationString
+{
+    if (![truncationString isEqualToAttributedString:_truncationString])
     {
-        _truncationString = trunctionString;
+        _truncationString = truncationString;
         [self relayoutText];
     }
 }
 
-- (void)sizeToFit
-{
-	CGSize size = [self suggestedFrameSizeToFitEntireStringConstraintedToWidth:CGFLOAT_OPEN_HEIGHT];
-	self.frame = CGRectMake(self.frame.origin.x, self.frame.origin.y, size.width, size.height);
-}
-
-@synthesize numberOfLines = _numberOfLines;
-@synthesize lineBreakMode = _lineBreakMode;
-@synthesize truncationString = _truncationString;
 
 @end

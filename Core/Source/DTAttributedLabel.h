@@ -9,10 +9,16 @@
 #import "DTAttributedTextContentView.h"
 
 /**
- Rich Text replacement for UILabel.
+ A Rich Text replacement for `UILabel`. It inherits from <DTAttributedTextContentView> and as such you can also set the delegate to provide custom subviews i.e. for images or hyperlinks.
+ 
+ Contrary to DTAttributedTextContentView the intrinsicContentSize is only as wide as the text content. To shrink the DTAttributedLabel to that call -sizeToFit.
  */
 
 @interface DTAttributedLabel : DTAttributedTextContentView
+
+/**
+ @name Setting Attributes
+ */
 
 /**
  The number of lines to display in the receiver

@@ -12,6 +12,9 @@
 #import <UIKit/UIKit.h>
 #endif
 
+/**
+ A dictation placeholder to display in editors between the time the recording is complete until a recognized response is received.
+ */
 @interface DTDictationPlaceholderView : DTView
 
 /**
