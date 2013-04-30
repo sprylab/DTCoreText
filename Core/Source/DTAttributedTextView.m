@@ -77,7 +77,6 @@
 #endif
 */
 #if TARGET_OS_IPHONE
-// TODO SG ??
 - (void)layoutSubviews
 {
 	[super layoutSubviews];
@@ -200,7 +199,6 @@
 #if TARGET_OS_IPHONE
 		self.contentSize = [_attributedTextContentView intrinsicContentSize];
 #else
-		// TODO SG ??
 		CGSize contentSize = [_attributedTextContentView intrinsicContentSize];
 		[self.documentView setFrame:NSMakeRect(0, 0, contentSize.width, contentSize.height)];
 #endif

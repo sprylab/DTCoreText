@@ -8,6 +8,7 @@
 
 #import "DTAttributedTextContentView.h"
 #import "DTCoreText.h"
+#import "DTDictationPlaceholderTextAttachment.h"
 #import <QuartzCore/QuartzCore.h>
 
 #if !TARGET_OS_IPHONE
@@ -85,18 +86,6 @@ static Class _layerClassToUseForDTAttributedTextContentView = nil;
 
 
 @implementation DTAttributedTextContentView
-
-#if !TARGET_OS_IPHONE
-//- (BOOL)isFlipped
-//{
-	// TODO SG reason description, for view as parent set YES, for layerbased NO
-//	return NO;
-//	return YES;
-//	return (self.superview != nil);
-//	return [[self superview] isFlipped];
-//}
-
-#endif
 
 - (void)setup
 {
@@ -206,7 +195,7 @@ static Class _layerClassToUseForDTAttributedTextContentView = nil;
 	}
 	
 	// hide all customViews
-	for (UIView *view in self.customViews)
+	for (DTView *view in self.customViews)
 	{
 		view.hidden = YES;
 	}
@@ -299,7 +288,7 @@ static Class _layerClassToUseForDTAttributedTextContentView = nil;
 				if (attachment)
 				{
 					indexKey = [NSNumber numberWithInteger:[attachment hash]];
-					UIView *existingAttachmentView = [self.customViewsForAttachmentsIndex objectForKey:indexKey];
+					DTView *existingAttachmentView = [self.customViewsForAttachmentsIndex objectForKey:indexKey];
 					
 					if (existingAttachmentView)
 					{
@@ -317,7 +306,7 @@ static Class _layerClassToUseForDTAttributedTextContentView = nil;
 					}
 					else
 					{
-						UIView *newCustomAttachmentView = nil;
+						DTView *newCustomAttachmentView = nil;
 						
 						if ([attachment isKindOfClass:[DTDictationPlaceholderTextAttachment class]])
 						{
@@ -353,7 +342,7 @@ static Class _layerClassToUseForDTAttributedTextContentView = nil;
 				
 				if (linkURL && (_delegateFlags.delegateSupportsCustomViewsForLinks || _delegateFlags.delegateSupportsGenericCustomViews))
 				{
-					UIView *existingLinkView = [self.customViewsForLinksIndex objectForKey:indexKey];
+					DTView *existingLinkView = [self.customViewsForLinksIndex objectForKey:indexKey];
 					
 					// make sure that the frame height is no less than the line height for hyperlinks
 					if (frameForSubview.size.height < oneLine.frame.size.height)
@@ -369,7 +358,7 @@ static Class _layerClassToUseForDTAttributedTextContentView = nil;
 					}
 					else
 					{
-						UIView *newCustomLinkView = nil;
+						DTView *newCustomLinkView = nil;
 						
 						// make sure that the frame height is no less than the line height for hyperlinks
 						if (frameForSubview.size.height < oneLine.frame.size.height)
@@ -420,7 +409,6 @@ static Class _layerClassToUseForDTAttributedTextContentView = nil;
 	}
 }
 #else
-// TODO SG ??
 - (void)layout
 {
 	[super layout];
@@ -446,7 +434,6 @@ static Class _layerClassToUseForDTAttributedTextContentView = nil;
 #if TARGET_OS_IPHONE
 	CGColorRef clearColor = [[UIColor clearColor] CGColor];
 	CGContextSetFillColorWithColor(ctx, clearColor);
-	CGColorRelease(clearColor);
 #else
 	CGColorRef clearColor = CGColorCreateGenericRGB(0, 0, 0, 0);
 	CGContextSetFillColorWithColor(ctx, clearColor);
@@ -993,18 +980,30 @@ static Class _layerClassToUseForDTAttributedTextContentView = nil;
 
 @implementation DTAttributedTextContentView (Drawing)
 
-- (UIImage *)contentImageWithBounds:(CGRect)bounds options:(DTCoreTextLayoutFrameDrawingOptions)options
+// TODO SG
+- (DTImage *)contentImageWithBounds:(CGRect)bounds options:(DTCoreTextLayoutFrameDrawingOptions)options
 {
+#if TARGET_OS_IPHONE
 	UIGraphicsBeginImageContextWithOptions(bounds.size, NO, 0);
-	
 	CGContextRef context = UIGraphicsGetCurrentContext();
+#else
+	// TODO osx
+	//UIGraphicsBeginImageContextWithOptions(bounds.size, NO, 0);
+	CGContextRef context = [[NSGraphicsContext currentContext] graphicsPort];
+#endif
 	
 	CGContextTranslateCTM(context, -bounds.origin.x, -bounds.origin.y);
 	
 	[self.layoutFrame drawInContext:context options:options];
 	
-	UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+#if TARGET_OS_IPHONE
+	DTImage *image = UIGraphicsGetImageFromCurrentImageContext();
 	UIGraphicsEndImageContext();
+#else
+	// TODO osx
+	DTImage *image = nil;//UIGraphicsGetImageFromCurrentImageContext();
+	//UIGraphicsEndImageContext();
+#endif
 	
 	return image;
 }

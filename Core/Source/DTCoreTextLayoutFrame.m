@@ -8,7 +8,7 @@
 
 #import "DTCoreText.h"
 #import "DTCoreTextLayoutFrame.h"
-#import <DTFoundation/DTVersion.h>
+#import "DTVersion.h"
 
 #import <QuartzCore/QuartzCore.h>
 
@@ -287,7 +287,7 @@ static BOOL _DTCoreTextLayoutFramesShouldDrawDebugFrames = NO;
 		}
 		
 		// we need all metrics so get the at once
-		currentLineMetrics.width = CTLineGetTypographicBounds(line, &currentLineMetrics.ascent, &currentLineMetrics.descent, &currentLineMetrics.leading);
+		currentLineMetrics.width = (CGFloat)CTLineGetTypographicBounds(line, &currentLineMetrics.ascent, &currentLineMetrics.descent, &currentLineMetrics.leading);
 		
 		// get line height in px if it is specified for this line
 		CGFloat lineHeight = 0;
@@ -474,14 +474,14 @@ static BOOL _DTCoreTextLayoutFramesShouldDrawDebugFrames = NO;
 				
 			case kCTRightTextAlignment:
 			{
-				lineOrigin.x = _frame.origin.x + offset + CTLineGetPenOffsetForFlush(line, 1.0, availableSpace);
+				lineOrigin.x = _frame.origin.x + offset + (CGFloat)CTLineGetPenOffsetForFlush(line, 1.0, availableSpace);
 				
 				break;
 			}
 				
 			case kCTCenterTextAlignment:
 			{
-				lineOrigin.x = _frame.origin.x + offset + CTLineGetPenOffsetForFlush(line, 0.5, availableSpace);
+				lineOrigin.x = _frame.origin.x + offset + (CGFloat)CTLineGetPenOffsetForFlush(line, 0.5, availableSpace);
 				
 				break;
 			}
@@ -504,7 +504,7 @@ static BOOL _DTCoreTextLayoutFramesShouldDrawDebugFrames = NO;
 				if (isRTL)
 				{
 					// align line with right margin
-					lineOrigin.x = _frame.origin.x + offset + CTLineGetPenOffsetForFlush(line, 1.0, availableSpace);
+					lineOrigin.x = _frame.origin.x + offset + (CGFloat)CTLineGetPenOffsetForFlush(line, 1.0, availableSpace);
 				}
 				else
 				{
@@ -1154,28 +1154,20 @@ static BOOL _DTCoreTextLayoutFramesShouldDrawDebugFrames = NO;
 			
 			if (attachment)
 			{
-				if (drawImages)
+				if (drawImages && [attachment conformsToProtocol:@protocol(DTTextAttachmentDrawing)])
 				{
-					if (attachment.contentType == DTTextAttachmentTypeImage)
-					{
-						DTImage *image = (id)attachment.contents;
-						
-						// frame might be different due to image vertical alignment
-						CGFloat ascender = [attachment ascentForLayout];
-						CGFloat descender = [attachment descentForLayout];
-						
-						CGPoint origin = oneRun.frame.origin;
-						origin.y = self.frame.size.height - origin.y - ascender - descender;
-						
-						CGRect flippedRect = CGRectMake(roundf(origin.x), roundf(origin.y), attachment.displaySize.width, attachment.displaySize.height);
-						
-#if TARGET_OS_IPHONE
-						CGContextDrawImage(context, flippedRect, image.CGImage);
-#else
-						// TODO SG ??
-						CGContextDrawImage(context, flippedRect, [image CGImageForProposedRect:&flippedRect context:(__bridge NSGraphicsContext *)(context) hints:nil]);
-#endif
-					}
+					// develop
+					id<DTTextAttachmentDrawing> drawableAttachment = (id<DTTextAttachmentDrawing>)attachment;
+					
+					// frame might be different due to image vertical alignment
+					CGFloat ascender = [attachment ascentForLayout];
+					CGFloat descender = [attachment descentForLayout];
+					
+					CGPoint origin = oneRun.frame.origin;
+					origin.y = self.frame.size.height - origin.y - ascender - descender;
+					CGRect flippedRect = CGRectMake(roundf(origin.x), roundf(origin.y), attachment.displaySize.width, attachment.displaySize.height);
+					
+					[drawableAttachment drawInRect:flippedRect context:context];
 				}
 			}
 			else

@@ -210,9 +210,6 @@
 		
 		CGContextSetTextMatrix(context, textMatrix);
 		
-		CGContextSetRGBFillColor(context, 1, 0, 0, 1);
-		CGContextSetBlendMode(context, kCGBlendModePlusLighter);
-		
 		CTRunDraw(_run, context, CFRangeMake(0, 0));
 
 		// restore identity
@@ -301,7 +298,7 @@
 				
 				if (usedFont)
 				{
-					CGFloat strokePosition = CTFontGetXHeight(usedFont)/2.0;
+					CGFloat strokePosition = CTFontGetXHeight(usedFont)/(CGFloat)2.0;
 					y = DTRoundWithContentScale(runStrokeBounds.origin.y + _ascent - strokePosition, contentScale);
 				}
 				else

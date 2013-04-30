@@ -12,11 +12,7 @@
 #import "DTImage+HTML.h"
 
 // common utilities
-#if TARGET_OS_IPHONE
-#import <DTFoundation/DTUtils.h>
-#else
-#import <DTFoundationMac/DTUtils.h>
-#endif
+#import "DTUtils.h"
 
 #if TARGET_OS_IPHONE
 #import "DTCoreTextFunctions.h"
@@ -28,7 +24,6 @@
 #import "DTCSSStylesheet.h"
 #import "DTCoreTextFontDescriptor.h"
 #import "DTHTMLElement.h"
-#import "DTTextAttachment.h"
 #import "NSCharacterSet+HTML.h"
 #import "NSScanner+HTML.h"
 #import "NSMutableString+HTML.h"
@@ -50,6 +45,14 @@
 #import "NSView+UIVIew.h"
 #endif
 
+// text attachment cluster
+#import "DTTextAttachment.h"
+#import "DTDictationPlaceholderTextAttachment.h"
+#import "DTIframeTextAttachment.h"
+#import "DTImageTextAttachment.h"
+#import "DTObjectTextAttachment.h"
+#import "DTVideoTextAttachment.h"
+
 #if TARGET_OS_IPHONE
 // These classes only work with UIKit on iOS
 #import "DTLazyImageView.h"
@@ -59,16 +62,7 @@
 
 #import "DTAttributedLabel.h"
 #import "DTAttributedTextCell.h"
-//#import "DTAttributedTextContentView.h"
-//#import "DTAttributedTextView.h"
 #import "DTCoreTextFontCollection.h"
-//#import "DTCoreTextGlyphRun.h"
-//#import "DTCoreTextLayoutFrame.h"
-//#import "DTCoreTextLayoutLine.h"
-//#import "DTCoreTextLayouter.h"
-
-//#import "DTDictationPlaceholderTextAttachment.h"
-//#import "DTDictationPlaceholderView.h"
 
 #import "UIFont+DTCoreText.h"
 #endif
@@ -81,7 +75,6 @@
 #import "DTCoreTextLayoutFrame.h"
 #import "DTCoreTextLayouter.h"
 
-#import "DTDictationPlaceholderTextAttachment.h"
 #import "DTDictationPlaceholderView.h"
 
 

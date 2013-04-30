@@ -52,20 +52,18 @@
 - (DTColor *)_lightDotColor
 {
 #if TARGET_OS_IPHONE
-    return [DTColor colorWithRed:238.0/255.0 green:128.0/255.0 blue:238.0/255.0 alpha:1.0];
+    return [DTColor colorWithRed:(CGFloat)(238.0/255.0) green:(CGFloat)(128.0/255.0) blue:(CGFloat)(238.0/255.0) alpha:1.0];
 #else
-	// TODO SG ??
-    return [DTColor colorWithCalibratedRed:238.0/255.0 green:128.0/255.0 blue:238.0/255.0 alpha:1.0];
+    return [DTColor colorWithCalibratedRed:(CGFloat)(238.0/255.0) green:(CGFloat)(128.0/255.0) blue:(CGFloat)(238.0/255.0) alpha:1.0];
 #endif
 }
 
 - (DTColor *)_darkDotColor
 {
 #if TARGET_OS_IPHONE
-    return [DTColor colorWithRed:191.0/255.0 green:51.0/255.0 blue:191.0/255.0 alpha:1.0];
+    return [DTColor colorWithRed:(CGFloat)(191.0/255.0) green:(CGFloat)(51.0/255.0) blue:(CGFloat)(191.0/255.0)alpha:1.0];
 #else
-	// TODO SG ??
-    return [DTColor colorWithCalibratedRed:191.0/255.0 green:51.0/255.0 blue:191.0/255.0 alpha:1.0];
+    return [DTColor colorWithCalibratedRed:(CGFloat)(191.0/255.0) green:(CGFloat)(51.0/255.0)blue:(CGFloat)(191.0/255.0) alpha:1.0];
 #endif
 }
 
@@ -76,7 +74,6 @@
 	[self updateTimer:(newSuperview!= nil)];
 }
 #else
-	// TODO SG ??
 - (void)viewWillMoveToSuperview:(NSView *)newSuperview
 {
     [super viewWillMoveToSuperview:newSuperview];

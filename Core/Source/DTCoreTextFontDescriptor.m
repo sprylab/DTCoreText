@@ -8,11 +8,7 @@
 
 #import "DTCoreTextFontDescriptor.h"
 
-#if TARGET_OS_IPHONE
-#import <DTFoundation/DTVersion.h>
-#else 
-#import <DTFoundationMac/DTVersion.h>
-#endif
+#import "DTVersion.h"
 #import "DTCoreTextFontCollection.h"
 
 static NSCache *_fontCache = nil;
@@ -571,7 +567,7 @@ static BOOL _needsChineseFontCascadeFix = NO;
 {
 	NSUInteger calcHash = 7;
 	
-	calcHash = calcHash*31 + _pointSize;
+	calcHash = calcHash*31 + (NSUInteger)_pointSize;
 	calcHash = calcHash*31 + (_stylisticClass | _stylisticTraits);
 	calcHash = calcHash*31 + [_fontName hash];
 	calcHash = calcHash*31 + [_fontFamily hash];

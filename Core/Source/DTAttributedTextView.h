@@ -8,11 +8,7 @@
 
 #import "DTAttributedTextContentView.h"
 
-#if TARGET_OS_IPHONE
-#import <DTFoundation/DTScrollView.h>
-#else
-#import <DTFoundationMac/DTScrollView.h>
-#endif
+#import "DTScrollView.h"
 
 /**
  This view is designed to be a replacement for `UITextView`. It is a `UIScrollView` subclass and creates a <DTAttributedTextContentView> as content view for displaying the text.
