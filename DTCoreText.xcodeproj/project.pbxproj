@@ -2545,6 +2545,7 @@
 				PRODUCT_NAME = RTDemoApp;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "Core/Source Core/Externals/** Core/Externals/DTFoundation/Core/Source/**";
+				VALID_ARCHS = "armv7 armv7s";
 			};
 			name = Debug;
 		};
@@ -2565,6 +2566,7 @@
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "Core/Source Core/Externals/** Core/Externals/DTFoundation/Core/Source/**";
 				VALIDATE_PRODUCT = YES;
+				VALID_ARCHS = "armv7 armv7s";
 			};
 			name = Release;
 		};
@@ -2605,6 +2607,7 @@
 				SKIP_INSTALL = YES;
 				UNLOCALIZED_RESOURCES_FOLDER_PATH = "$(CONTENTS_FOLDER_PATH)/Resources";
 				USER_HEADER_SEARCH_PATHS = "Core/Source/** Core/Externals/DTFoundation/Core/Source/** Core/Externals/**";
+				VALID_ARCHS = "armv7 armv7s i386";
 				WRAPPER_EXTENSION = framework;
 			};
 			name = Debug;
@@ -2640,6 +2643,7 @@
 				UNLOCALIZED_RESOURCES_FOLDER_PATH = "$(CONTENTS_FOLDER_PATH)/Resources";
 				USER_HEADER_SEARCH_PATHS = "Core/Source/** Core/Externals/DTFoundation/Core/Source/** Core/Externals/**";
 				VALIDATE_PRODUCT = YES;
+				VALID_ARCHS = "armv7 armv7s i386";
 				WRAPPER_EXTENSION = framework;
 			};
 			name = Release;
@@ -2667,6 +2671,7 @@
 				PUBLIC_HEADERS_FOLDER_PATH = ../../DTCoreText;
 				SKIP_INSTALL = YES;
 				USER_HEADER_SEARCH_PATHS = "Core/Source Core/Externals/** Core/Externals/DTFoundation/Core/Source/**";
+				VALID_ARCHS = "armv7 armv7s i386";
 			};
 			name = Debug;
 		};
@@ -2687,6 +2692,7 @@
 				SKIP_INSTALL = YES;
 				USER_HEADER_SEARCH_PATHS = "Core/Source Core/Externals/** Core/Externals/DTFoundation/Core/Source/**";
 				VALIDATE_PRODUCT = YES;
+				VALID_ARCHS = "armv7 armv7s i386";
 			};
 			name = Release;
 		};
@@ -2695,6 +2701,7 @@
 			buildSettings = {
 				GCC_THUMB_SUPPORT = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				VALID_ARCHS = "armv7 armv7s i386";
 			};
 			name = Debug;
 		};
@@ -2703,6 +2710,7 @@
 			buildSettings = {
 				GCC_THUMB_SUPPORT = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				VALID_ARCHS = "armv7 armv7s i386";
 			};
 			name = Release;
 		};
@@ -2737,6 +2745,7 @@
 					"-all_load",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				VALID_ARCHS = "armv7 armv7s i386";
 				WRAPPER_EXTENSION = octest;
 			};
 			name = Debug;
@@ -2766,6 +2775,7 @@
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				VALIDATE_PRODUCT = YES;
+				VALID_ARCHS = "armv7 armv7s i386";
 				WRAPPER_EXTENSION = octest;
 			};
 			name = Release;
@@ -2860,6 +2870,7 @@
 				PUBLIC_HEADERS_FOLDER_PATH = ../../DTCoreText;
 				SKIP_INSTALL = YES;
 				USER_HEADER_SEARCH_PATHS = "Core/Source Core/Externals/** Core/Externals/DTFoundation/Core/Source/**";
+				VALID_ARCHS = "armv7 armv7s i386";
 			};
 			name = Debug;
 		};
@@ -2878,6 +2889,7 @@
 				SKIP_INSTALL = YES;
 				USER_HEADER_SEARCH_PATHS = "Core/Source Core/Externals/** Core/Externals/DTFoundation/Core/Source/**";
 				VALIDATE_PRODUCT = YES;
+				VALID_ARCHS = "armv7 armv7s i386";
 			};
 			name = Release;
 		};
