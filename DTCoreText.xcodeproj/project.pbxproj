@@ -21,7 +21,6 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
-		057B9230171C21B400D0F0FC /* DTFoundationMac.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05AA282C16DFD8CA00E5BEF5 /* DTFoundationMac.framework */; };
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		288765A50DF7441C002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765A40DF7441C002DB57D /* CoreGraphics.framework */; };
@@ -628,13 +627,6 @@
 /* End PBXBuildRule section */
 
 /* Begin PBXContainerItemProxy section */
-		057B9227171C205E00D0F0FC /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = A7E383AB160DFEA700CF72D6 /* DTFoundation.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 052B1CDE16C6856E005C3CA2;
-			remoteInfo = DTFoundationMac;
-		};
 		A70E62FF16C254EB009B47BF /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
@@ -711,6 +703,20 @@
 			proxyType = 1;
 			remoteGlobalIDString = A70B4CE61486637E00873A4A;
 			remoteInfo = "Static Library";
+		};
+		C7CFBE751727D24A00F37673 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A7E383AB160DFEA700CF72D6 /* DTFoundation.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 052B1CDF16C6856E005C3CA2;
+			remoteInfo = DTFoundationMac;
+		};
+		C7CFBE7E1727D45500F37673 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A7E383AB160DFEA700CF72D6 /* DTFoundation.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 052B1CDE16C6856E005C3CA2;
+			remoteInfo = DTFoundationMac;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -999,7 +1005,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				057B9230171C21B400D0F0FC /* DTFoundationMac.framework in Frameworks */,
 				C7A426AE16D76F1E00B66CB6 /* QuartzCore.framework in Frameworks */,
 				E2262DC71638331500BFDAD7 /* Cocoa.framework in Frameworks */,
 				E2262E031638346200BFDAD7 /* AppKit.framework in Frameworks */,
@@ -1387,7 +1392,7 @@
 				A7B4E2D61686FDB300717707 /* libDTHTMLParser.a */,
 				A7B4E2DA1686FDB300717707 /* libDTZipArchive.a */,
 				A7B4E2E01686FDB300717707 /* libDTUTI.a */,
-				05AA282C16DFD8CA00E5BEF5 /* DTFoundationMac.framework */,
+				C7CFBE761727D24A00F37673 /* DTFoundationMac.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1684,8 +1689,8 @@
 				A758FC9714DBCEFD007DF8B2 /* PBXBuildRule */,
 			);
 			dependencies = (
-				A7B4E2E81686FE1B00717707 /* PBXTargetDependency */,
 				A7E383E8160DFFDE00CF72D6 /* PBXTargetDependency */,
+				A7B4E2E81686FE1B00717707 /* PBXTargetDependency */,
 			);
 			name = DTCoreText;
 			productName = DTCoreText;
@@ -1762,6 +1767,7 @@
 				E2262E001638341B00BFDAD7 /* PBXBuildRule */,
 			);
 			dependencies = (
+				C7CFBE7F1727D45500F37673 /* PBXTargetDependency */,
 			);
 			name = DTCoreTextMac;
 			productName = DTCoreText;
@@ -1811,13 +1817,6 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		05AA282C16DFD8CA00E5BEF5 /* DTFoundationMac.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = DTFoundationMac.framework;
-			remoteRef = 05AA282B16DFD8CA00E5BEF5 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
 		A7B4E2D21686FDB300717707 /* UnitTests.octest */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
@@ -1858,6 +1857,13 @@
 			fileType = archive.ar;
 			path = libDTFoundation.a;
 			remoteRef = A7E383B8160DFEA800CF72D6 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		C7CFBE761727D24A00F37673 /* DTFoundationMac.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = DTFoundationMac.framework;
+			remoteRef = C7CFBE751727D24A00F37673 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -2348,6 +2354,11 @@
 			isa = PBXTargetDependency;
 			name = "Static Library";
 			targetProxy = A7E383E7160DFFDE00CF72D6 /* PBXContainerItemProxy */;
+		};
+		C7CFBE7F1727D45500F37673 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = DTFoundationMac;
+			targetProxy = C7CFBE7E1727D45500F37673 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
