@@ -136,7 +136,6 @@
 	self.clipsToBounds = YES;
 #else
 	self.attributedTextContentView;
-	// TODO SG nothing
 #endif
 }
 
