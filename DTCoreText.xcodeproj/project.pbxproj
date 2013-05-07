@@ -485,6 +485,7 @@
 		A7F7EFC51573603100F5A4D0 /* DTCoreText.h in Headers */ = {isa = PBXBuildFile; fileRef = A70B4C9E1486558200873A4A /* DTCoreText.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A7F7EFC61573603100F5A4D0 /* DTImage+HTML.h in Headers */ = {isa = PBXBuildFile; fileRef = A7C5D01314D7E3BB00AF1D75 /* DTImage+HTML.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A7F7EFC81573603100F5A4D0 /* DTCompatibility.h in Headers */ = {isa = PBXBuildFile; fileRef = A7A672B91532F2D100920A18 /* DTCompatibility.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C74FB03F1738F6DD0057FD46 /* DTFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C7CFBE761727D24A00F37673 /* DTFoundation.framework */; };
 		C7A4261416D62ECA00B66CB6 /* DTAttributedTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = A788C91514863E8700E1AFD9 /* DTAttributedTextView.m */; };
 		C7A4261B16D6391600B66CB6 /* DTAttributedTextContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = A788C91314863E8700E1AFD9 /* DTAttributedTextContentView.m */; };
 		C7A4261E16D63BD600B66CB6 /* NSView+UIVIew.h in Headers */ = {isa = PBXBuildFile; fileRef = C7A4261C16D63BD500B66CB6 /* NSView+UIVIew.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -704,18 +705,18 @@
 			remoteGlobalIDString = A70B4CE61486637E00873A4A;
 			remoteInfo = "Static Library";
 		};
+		C74FB03D1738F6D60057FD46 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A7E383AB160DFEA700CF72D6 /* DTFoundation.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 052B1CDE16C6856E005C3CA2;
+			remoteInfo = DTFoundationMac;
+		};
 		C7CFBE751727D24A00F37673 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = A7E383AB160DFEA700CF72D6 /* DTFoundation.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 052B1CDF16C6856E005C3CA2;
-			remoteInfo = DTFoundationMac;
-		};
-		C7CFBE7E1727D45500F37673 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = A7E383AB160DFEA700CF72D6 /* DTFoundation.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 052B1CDE16C6856E005C3CA2;
 			remoteInfo = DTFoundationMac;
 		};
 /* End PBXContainerItemProxy section */
@@ -1005,6 +1006,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C74FB03F1738F6DD0057FD46 /* DTFoundation.framework in Frameworks */,
 				C7A426AE16D76F1E00B66CB6 /* QuartzCore.framework in Frameworks */,
 				E2262DC71638331500BFDAD7 /* Cocoa.framework in Frameworks */,
 				E2262E031638346200BFDAD7 /* AppKit.framework in Frameworks */,
@@ -1392,7 +1394,7 @@
 				A7B4E2D61686FDB300717707 /* libDTHTMLParser.a */,
 				A7B4E2DA1686FDB300717707 /* libDTZipArchive.a */,
 				A7B4E2E01686FDB300717707 /* libDTUTI.a */,
-				C7CFBE761727D24A00F37673 /* DTFoundationMac.framework */,
+				C7CFBE761727D24A00F37673 /* DTFoundation.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1767,7 +1769,7 @@
 				E2262E001638341B00BFDAD7 /* PBXBuildRule */,
 			);
 			dependencies = (
-				C7CFBE7F1727D45500F37673 /* PBXTargetDependency */,
+				C74FB03E1738F6D60057FD46 /* PBXTargetDependency */,
 			);
 			name = DTCoreTextMac;
 			productName = DTCoreText;
@@ -1859,10 +1861,10 @@
 			remoteRef = A7E383B8160DFEA800CF72D6 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		C7CFBE761727D24A00F37673 /* DTFoundationMac.framework */ = {
+		C7CFBE761727D24A00F37673 /* DTFoundation.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
-			path = DTFoundationMac.framework;
+			path = DTFoundation.framework;
 			remoteRef = C7CFBE751727D24A00F37673 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
@@ -2355,10 +2357,10 @@
 			name = "Static Library";
 			targetProxy = A7E383E7160DFFDE00CF72D6 /* PBXContainerItemProxy */;
 		};
-		C7CFBE7F1727D45500F37673 /* PBXTargetDependency */ = {
+		C74FB03E1738F6D60057FD46 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = DTFoundationMac;
-			targetProxy = C7CFBE7E1727D45500F37673 /* PBXContainerItemProxy */;
+			targetProxy = C74FB03D1738F6D60057FD46 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
