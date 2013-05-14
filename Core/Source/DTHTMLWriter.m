@@ -17,8 +17,7 @@
 	
 	CGFloat _textScale;
 	BOOL _iOS6TagsPossible;
-	
-	NSMutableDictionary *_styleLookup;
+		
 }
 
 - (id)initWithAttributedString:(NSAttributedString *)attributedString
@@ -212,10 +211,14 @@
 }
 
 
-- (void)_buildOutput
+- (void)_buildOutput:(NSMutableDictionary*)existingStyleLookupMap
 {
 	// reusable styles
-	_styleLookup = [[NSMutableDictionary alloc] init];
+	if (existingStyleLookupMap) {
+		_styleLookup = [[NSMutableDictionary alloc] initWithDictionary:existingStyleLookupMap];
+	} else {
+		_styleLookup = [[NSMutableDictionary alloc] init];
+	}
 	
 	NSString *plainString = [_attributedString string];
 	
@@ -724,15 +727,27 @@
 {
 	if (!_HTMLString)
 	{
-		[self _buildOutput];
+		[self _buildOutput:nil];
 	}
 	
 	return _HTMLString;
 }
 
+- (NSString *)HTMLStringWithStyleLookupMap:(NSMutableDictionary*)styleLookupMap				   
+{
+	if (!_HTMLString)
+	{
+		[self _buildOutput:styleLookupMap];
+	}
+	
+	return _HTMLString;
+}
+
+
 #pragma mark - Properties
 
 @synthesize attributedString = _attributedString;
 @synthesize textScale = _textScale;
+@synthesize styleLookup = _styleLookup;
 
 @end

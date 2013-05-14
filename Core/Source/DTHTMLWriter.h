@@ -9,7 +9,11 @@
 /**
  Class to generate HTML from `NSAttributedString` instances.
  */
-@interface DTHTMLWriter : NSObject
+@interface DTHTMLWriter : NSObject {
+
+	NSMutableDictionary *_styleLookup;
+	
+}
 
 /**
  Creates a writer with a given `NSAttributedString` as input
@@ -25,6 +29,12 @@
 - (NSString *)HTMLString;
 
 /**
+ Generates a HTML representation of the attributed string by taking an existing style lookup map into account
+ @returns The generated string
+ */
+- (NSString *)HTMLStringWithStyleLookupMap:(NSMutableDictionary*)styleLookupMap;
+
+/**
  If specified then all absolute font sizes (px) will be divided by this value. This is useful if you specified a text size multiplicator when converting HTML to the attributed string you are processing.
  */
 @property (nonatomic, assign) CGFloat textScale;
@@ -33,5 +43,7 @@
  The attributed string that the writer is processing.
  */
 @property (nonatomic, readonly) NSAttributedString *attributedString;
+
+@property (nonatomic, strong) NSMutableDictionary *styleLookup;
 
 @end
