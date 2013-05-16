@@ -21,6 +21,7 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		058FDBFB17380EFA0084D679 /* DTFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C7CFBE761727D24A00F37673 /* DTFoundation.framework */; };
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		288765A50DF7441C002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765A40DF7441C002DB57D /* CoreGraphics.framework */; };
@@ -80,7 +81,7 @@
 		A7358D701680F2B0005F1352 /* libDTFoundation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A7E383B9160DFEA800CF72D6 /* libDTFoundation.a */; };
 		A73885A51606E9B2001D60C4 /* EmojiTest.html in Resources */ = {isa = PBXBuildFile; fileRef = A73885A41606E9B2001D60C4 /* EmojiTest.html */; };
 		A73AE7911686FC6A009CF8C3 /* DTHTMLWriter.h in Headers */ = {isa = PBXBuildFile; fileRef = A73AE78F1686FC6A009CF8C3 /* DTHTMLWriter.h */; };
-		A73AE7921686FC6A009CF8C3 /* DTHTMLWriter.h in Headers */ = {isa = PBXBuildFile; fileRef = A73AE78F1686FC6A009CF8C3 /* DTHTMLWriter.h */; };
+		A73AE7921686FC6A009CF8C3 /* DTHTMLWriter.h in Headers */ = {isa = PBXBuildFile; fileRef = A73AE78F1686FC6A009CF8C3 /* DTHTMLWriter.h */; settings = {ATTRIBUTES = (); }; };
 		A73AE7931686FC6A009CF8C3 /* DTHTMLWriter.h in Headers */ = {isa = PBXBuildFile; fileRef = A73AE78F1686FC6A009CF8C3 /* DTHTMLWriter.h */; };
 		A73AE7941686FC6A009CF8C3 /* DTHTMLWriter.h in Headers */ = {isa = PBXBuildFile; fileRef = A73AE78F1686FC6A009CF8C3 /* DTHTMLWriter.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A73AE7961686FC6A009CF8C3 /* DTHTMLWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = A73AE7901686FC6A009CF8C3 /* DTHTMLWriter.m */; };
@@ -485,6 +486,7 @@
 		A7F7EFC51573603100F5A4D0 /* DTCoreText.h in Headers */ = {isa = PBXBuildFile; fileRef = A70B4C9E1486558200873A4A /* DTCoreText.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A7F7EFC61573603100F5A4D0 /* DTImage+HTML.h in Headers */ = {isa = PBXBuildFile; fileRef = A7C5D01314D7E3BB00AF1D75 /* DTImage+HTML.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A7F7EFC81573603100F5A4D0 /* DTCompatibility.h in Headers */ = {isa = PBXBuildFile; fileRef = A7A672B91532F2D100920A18 /* DTCompatibility.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C74FB03F1738F6DD0057FD46 /* DTFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C7CFBE761727D24A00F37673 /* DTFoundation.framework */; };
 		C7A4261416D62ECA00B66CB6 /* DTAttributedTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = A788C91514863E8700E1AFD9 /* DTAttributedTextView.m */; };
 		C7A4261B16D6391600B66CB6 /* DTAttributedTextContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = A788C91314863E8700E1AFD9 /* DTAttributedTextContentView.m */; };
 		C7A4261E16D63BD600B66CB6 /* NSView+UIVIew.h in Headers */ = {isa = PBXBuildFile; fileRef = C7A4261C16D63BD500B66CB6 /* NSView+UIVIew.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -627,6 +629,13 @@
 /* End PBXBuildRule section */
 
 /* Begin PBXContainerItemProxy section */
+		058FDBF917380EE50084D679 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A7E383AB160DFEA700CF72D6 /* DTFoundation.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 052B1CDE16C6856E005C3CA2;
+			remoteInfo = DTFoundationMac;
+		};
 		A70E62FF16C254EB009B47BF /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
@@ -704,14 +713,7 @@
 			remoteGlobalIDString = A70B4CE61486637E00873A4A;
 			remoteInfo = "Static Library";
 		};
-		C7CFBE751727D24A00F37673 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = A7E383AB160DFEA700CF72D6 /* DTFoundation.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 052B1CDF16C6856E005C3CA2;
-			remoteInfo = DTFoundationMac;
-		};
-		C7CFBE7E1727D45500F37673 /* PBXContainerItemProxy */ = {
+		C74FB03D1738F6D60057FD46 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = A7E383AB160DFEA700CF72D6 /* DTFoundation.xcodeproj */;
 			proxyType = 1;
@@ -1005,6 +1007,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				058FDBFB17380EFA0084D679 /* DTFoundation.framework in Frameworks */,
 				C7A426AE16D76F1E00B66CB6 /* QuartzCore.framework in Frameworks */,
 				E2262DC71638331500BFDAD7 /* Cocoa.framework in Frameworks */,
 				E2262E031638346200BFDAD7 /* AppKit.framework in Frameworks */,
@@ -1392,7 +1395,7 @@
 				A7B4E2D61686FDB300717707 /* libDTHTMLParser.a */,
 				A7B4E2DA1686FDB300717707 /* libDTZipArchive.a */,
 				A7B4E2E01686FDB300717707 /* libDTUTI.a */,
-				C7CFBE761727D24A00F37673 /* DTFoundationMac.framework */,
+				C7CFBE761727D24A00F37673 /* DTFoundation.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1767,7 +1770,7 @@
 				E2262E001638341B00BFDAD7 /* PBXBuildRule */,
 			);
 			dependencies = (
-				C7CFBE7F1727D45500F37673 /* PBXTargetDependency */,
+				058FDBFA17380EE50084D679 /* PBXTargetDependency */,
 			);
 			name = DTCoreTextMac;
 			productName = DTCoreText;
@@ -1859,10 +1862,10 @@
 			remoteRef = A7E383B8160DFEA800CF72D6 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		C7CFBE761727D24A00F37673 /* DTFoundationMac.framework */ = {
+		C7CFBE761727D24A00F37673 /* DTFoundation.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
-			path = DTFoundationMac.framework;
+			path = DTFoundation.framework;
 			remoteRef = C7CFBE751727D24A00F37673 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
@@ -2330,6 +2333,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		058FDBFA17380EE50084D679 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = DTFoundationMac;
+			targetProxy = 058FDBF917380EE50084D679 /* PBXContainerItemProxy */;
+		};
 		A70E630016C254EB009B47BF /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = A70F11DD148632CD009202BF /* DTCoreText */;
@@ -2354,11 +2362,6 @@
 			isa = PBXTargetDependency;
 			name = "Static Library";
 			targetProxy = A7E383E7160DFFDE00CF72D6 /* PBXContainerItemProxy */;
-		};
-		C7CFBE7F1727D45500F37673 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = DTFoundationMac;
-			targetProxy = C7CFBE7E1727D45500F37673 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
