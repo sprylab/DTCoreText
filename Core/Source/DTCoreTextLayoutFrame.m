@@ -512,6 +512,11 @@ static BOOL _DTCoreTextLayoutFramesShouldDrawDebugFrames = NO;
 			}
 		}
 		
+		// SG: added this break in case of line is nil, this happens if user will change layer-size fast (make it small and big as fast as you can)
+		if (!line) {
+			break;
+		}
+		
 		// wrap it
 		DTCoreTextLayoutLine *newLine = [[DTCoreTextLayoutLine alloc] initWithLine:line];
 		CFRelease(line);
