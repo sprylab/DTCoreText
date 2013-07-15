@@ -14,6 +14,7 @@
 //#import "DTCoreTextLayouter.h"
 //#import "DTCoreTextGlyphRun.h"
 #import "DTCoreText.h"
+#import "DTCompatibility.h"
 
 // constant for notification
 NSString *DTLinkButtonDidHighlightNotification = @"DTLinkButtonDidHighlightNotification";
@@ -50,7 +51,9 @@ NSString *DTLinkButtonDidHighlightNotification = @"DTLinkButtonDidHighlightNotif
 	self = [super initWithFrame:frame];
 	if (self)
 	{
+#if TARGET_OS_IPHONE
 		self.userInteractionEnabled = YES;
+#endif
 		self.enabled = YES;
 		self.opaque = NO;
 		
@@ -133,8 +136,7 @@ NSString *DTLinkButtonDidHighlightNotification = @"DTLinkButtonDidHighlightNotif
 	{
 		return;
 	}
-	
-	
+
 	for (DTCoreTextGlyphRun *glyphRunToDraw in lineToDraw.glyphRuns)
 	{
 		CGContextSaveGState(context);
@@ -180,7 +182,7 @@ NSString *DTLinkButtonDidHighlightNotification = @"DTLinkButtonDidHighlightNotif
 				CGContextSetGrayStrokeColor(context, 0, 1.0);
 			}
 			
-			CGRect runStrokeBounds = UIEdgeInsetsInsetRect(self.bounds, self.contentEdgeInsets);
+			CGRect runStrokeBounds = DTEdgeInsetsInsetRect(self.bounds, self.contentEdgeInsets);
 			
 			NSInteger superscriptStyle = [[glyphRunToDraw.attributes objectForKey:(id)kCTSuperscriptAttributeName] integerValue];
 			
@@ -200,12 +202,6 @@ NSString *DTLinkButtonDidHighlightNotification = @"DTLinkButtonDidHighlightNotif
 					break;
 			}
 			
-			
-			//		if (lastRunInLine)
-			//		{
-			//			runStrokeBounds.size.width -= [oneLine trailingWhitespaceWidth];
-			//		}
-			
 			if (backgroundColor)
 			{
 				CGContextSetFillColorWithColor(context, backgroundColor);
@@ -215,7 +211,7 @@ NSString *DTLinkButtonDidHighlightNotification = @"DTLinkButtonDidHighlightNotif
 			if (drawStrikeOut)
 			{
 				runStrokeBounds.origin.y = roundf(runStrokeBounds.origin.y + glyphRunToDraw.frame.size.height/2.0f + 1)+0.5f;
-				
+
 				CGContextMoveToPoint(context, runStrokeBounds.origin.x, runStrokeBounds.origin.y);
 				CGContextAddLineToPoint(context, runStrokeBounds.origin.x + runStrokeBounds.size.width, runStrokeBounds.origin.y);
 				
@@ -225,7 +221,7 @@ NSString *DTLinkButtonDidHighlightNotification = @"DTLinkButtonDidHighlightNotif
 			if (drawUnderline)
 			{
 				runStrokeBounds.origin.y = ceilf(runStrokeBounds.origin.y + glyphRunToDraw.frame.size.height - glyphRunToDraw.descent)+0.5f;
-				
+
 				CGContextMoveToPoint(context, runStrokeBounds.origin.x, runStrokeBounds.origin.y);
 				CGContextAddLineToPoint(context, runStrokeBounds.origin.x + runStrokeBounds.size.width, runStrokeBounds.origin.y);
 				
@@ -234,21 +230,31 @@ NSString *DTLinkButtonDidHighlightNotification = @"DTLinkButtonDidHighlightNotif
 		}
 		
 		// Flip the coordinate system
+#if TARGET_OS_IPHONE
 		CGContextSetTextMatrix(context, CGAffineTransformIdentity);
 		CGContextScaleCTM(context, 1.0, -1.0);
 		CGContextTranslateCTM(context, 0, -self.bounds.size.height);
-		
-		CGContextSetTextPosition(context, self.contentEdgeInsets.left, ceilf(glyphRunToDraw.descent+self.contentEdgeInsets.bottom));
+#endif
+
+		CGContextSetTextPosition(context, self.contentEdgeInsets.left, ceilf(glyphRunToDraw.descent+self.contentEdgeInsets.top));
 		
 		[glyphRunToDraw drawInContext:context];
 		CGContextRestoreGState(context);
 	}
 }
 
+#if ! TARGET_OS_IPHONE
+- (DTEdgeInsets)contentEdgeInsets
+{
+	return NSEdgeInsetsMake(0, 0, 0, 0);
+}
+#endif
+
 #pragma mark Drawing the Run
 
 - (void)drawRect:(CGRect)rect
 {
+#if TARGET_OS_IPHONE
 	CGContextRef ctx = UIGraphicsGetCurrentContext();
 	
 	if (self.highlighted)
@@ -268,6 +274,11 @@ NSString *DTLinkButtonDidHighlightNotification = @"DTLinkButtonDidHighlightNotif
 	{
 		[self drawTextInContext:ctx highlighted:NO];
 	}
+#else 
+	CGContextRef ctx = [[NSGraphicsContext currentContext] graphicsPort];
+	[self drawTextInContext:ctx highlighted:NO];
+	
+#endif
 }
 
 #pragma mark Utilitiy
@@ -289,7 +300,8 @@ NSString *DTLinkButtonDidHighlightNotification = @"DTLinkButtonDidHighlightNotif
 		heightExtend = _minimumHitSize.height - bounds.size.height;
 		bounds.size.height = _minimumHitSize.height;
 	}
-	
+
+#if TARGET_OS_IPHONE
 	if (widthExtend>0 || heightExtend>0)
 	{
 		self.contentEdgeInsets = UIEdgeInsetsMake(heightExtend/2.0f, widthExtend/2.0f, heightExtend/2.0f, widthExtend/2.0f);
@@ -299,11 +311,15 @@ NSString *DTLinkButtonDidHighlightNotification = @"DTLinkButtonDidHighlightNotif
 	{
 		self.contentEdgeInsets = UIEdgeInsetsMake(0, 0, 0, 0);
 	}
+#else
+	
+#endif
 }
 
 #pragma mark Notifications
 - (void)highlightNotification:(NSNotification *)notification
 {
+#if TARGET_OS_IPHONE
 	if ([notification object] == self)
 	{
 		// that was me
@@ -320,12 +336,14 @@ NSString *DTLinkButtonDidHighlightNotification = @"DTLinkButtonDidHighlightNotif
 		[super setHighlighted:highlighted];
 		[self setNeedsDisplay];
 	}
+#endif
 }
 
 
 
 #pragma mark Properties
 
+#if TARGET_OS_IPHONE
 - (void)setHighlighted:(BOOL)highlighted
 {
 	[super setHighlighted:highlighted];
@@ -340,6 +358,7 @@ NSString *DTLinkButtonDidHighlightNotification = @"DTLinkButtonDidHighlightNotif
 		[[NSNotificationCenter defaultCenter] postNotificationName:DTLinkButtonDidHighlightNotification object:self userInfo:userInfo];
 	}
 }
+#endif
 
 - (void)setFrame:(CGRect)frame
 {

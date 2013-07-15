@@ -84,18 +84,6 @@ static Class _layerClassToUseForDTAttributedTextContentView = nil;
 
 @implementation DTAttributedTextContentView
 
-#if !TARGET_OS_IPHONE
-//- (BOOL)isFlipped
-//{
-	// TODO SG reason description, for view as parent set YES, for layerbased NO
-//	return NO;
-//	return YES;
-//	return (self.superview != nil);
-//	return [[self superview] isFlipped];
-//}
-
-#endif
-
 - (void)setup
 {
 #if TARGET_OS_IPHONE
@@ -367,7 +355,9 @@ static Class _layerClassToUseForDTAttributedTextContentView = nil;
 								NSDictionary *attributes = [layoutString attributesAtIndex:runRange.location effectiveRange:NULL];
 								
 								NSString *guid = [attributes objectForKey:DTGUIDAttribute];
-								newCustomLinkView = [_delegate attributedTextContentView:self viewForLink:linkURL identifier:guid frame:frameForSubview];
+								NSAttributedString *attributedString = [self.attributedString attributedSubstringFromRange:runRange];
+								
+								newCustomLinkView = [_delegate attributedTextContentView:self attributedString:attributedString viewForLink:linkURL identifier:guid frame:frameForSubview];
 							}
 							else if (_delegateFlags.delegateSupportsGenericCustomViews)
 							{
@@ -660,6 +650,10 @@ static Class _layerClassToUseForDTAttributedTextContentView = nil;
 			// relayout only occurs if the view is visible
 			[self relayoutText];
 		}
+		else {
+			[self setNeedsLayout];
+			[self setNeedsDisplayInRect:self.bounds];
+		}
 	}
 }
 
@@ -890,7 +884,7 @@ static Class _layerClassToUseForDTAttributedTextContentView = nil;
 	_delegate = delegate;
 	
 	_delegateFlags.delegateSupportsCustomViewsForAttachments = [_delegate respondsToSelector:@selector(attributedTextContentView:viewForAttachment:frame:)];
-	_delegateFlags.delegateSupportsCustomViewsForLinks = [_delegate respondsToSelector:@selector(attributedTextContentView:viewForLink:identifier:frame:)];
+	_delegateFlags.delegateSupportsCustomViewsForLinks = [_delegate respondsToSelector:@selector(attributedTextContentView:attributedString:viewForLink:identifier:frame:)];
 	_delegateFlags.delegateSupportsGenericCustomViews = [_delegate respondsToSelector:@selector(attributedTextContentView:viewForAttributedString:frame:)];
 	_delegateFlags.delegateSupportsNotificationAfterDrawing = [_delegate respondsToSelector:@selector(attributedTextContentView:didDrawLayoutFrame:inContext:)];
 	_delegateFlags.delegateSupportsNotificationBeforeTextBoxDrawing = [_delegate respondsToSelector:@selector(attributedTextContentView:shouldDrawBackgroundForTextBlock:frame:context:forLayoutFrame:)];

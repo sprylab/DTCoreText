@@ -665,6 +665,8 @@
 		A7F7EFC51573603100F5A4D0 /* DTCoreText.h in Headers */ = {isa = PBXBuildFile; fileRef = A70B4C9E1486558200873A4A /* DTCoreText.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A7F7EFC61573603100F5A4D0 /* DTImage+HTML.h in Headers */ = {isa = PBXBuildFile; fileRef = A7C5D01314D7E3BB00AF1D75 /* DTImage+HTML.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A7F7EFC81573603100F5A4D0 /* DTCompatibility.h in Headers */ = {isa = PBXBuildFile; fileRef = A7A672B91532F2D100920A18 /* DTCompatibility.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C72D1303178F096400EEE23F /* DTLinkButton.h in Headers */ = {isa = PBXBuildFile; fileRef = A788C92E14863E8700E1AFD9 /* DTLinkButton.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C72D1309178F0A9000EEE23F /* DTLinkButton.m in Sources */ = {isa = PBXBuildFile; fileRef = A788C92F14863E8700E1AFD9 /* DTLinkButton.m */; };
 		C7A4261416D62ECA00B66CB6 /* DTAttributedTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = A788C91514863E8700E1AFD9 /* DTAttributedTextView.m */; };
 		C7A4261B16D6391600B66CB6 /* DTAttributedTextContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = A788C91314863E8700E1AFD9 /* DTAttributedTextContentView.m */; };
 		C7A4261E16D63BD600B66CB6 /* NSView+UIVIew.h in Headers */ = {isa = PBXBuildFile; fileRef = C7A4261C16D63BD500B66CB6 /* NSView+UIVIew.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -1984,6 +1986,7 @@
 				C7A4269A16D6972600B66CB6 /* DTDictationPlaceholderView.h in Headers */,
 				C7A4269216D695F000B66CB6 /* DTCoreTextLayoutLine.h in Headers */,
 				C7A4269D16D698A600B66CB6 /* DTCoreTextGlyphRun.h in Headers */,
+				C72D1303178F096400EEE23F /* DTLinkButton.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2767,6 +2770,7 @@
 				A70E62DD16C24905009B47BF /* DTDictationPlaceholderTextAttachment.m in Sources */,
 				A70E62FC16C2540C009B47BF /* DTHTMLElementStylesheet.m in Sources */,
 				C7A4261F16D63BD600B66CB6 /* NSView+UIVIew.m in Sources */,
+				C72D1309178F0A9000EEE23F /* DTLinkButton.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

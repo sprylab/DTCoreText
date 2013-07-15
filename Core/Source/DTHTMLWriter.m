@@ -644,9 +644,8 @@
 				}
 			}
 			
-			NSURL *url = [attributes objectForKey:DTLinkAttribute];
-			
-			if (url)
+			id url = [attributes objectForKey:DTLinkAttribute];
+			if ([url isKindOfClass:[NSURL class]])
 			{
 				if ([fontStyle length])
 				{

@@ -83,7 +83,7 @@ extern NSString * const DTAttributedTextContentViewDidFinishLayoutNotification;
  @param frame The frame that the view should use to fit on top of the space reserved for the attachment
  @returns The view that should represent the given hyperlink
  */
-- (DTView *)attributedTextContentView:(DTAttributedTextContentView *)attributedTextContentView viewForLink:(NSURL *)url identifier:(NSString *)identifier frame:(CGRect)frame;
+- (DTView *)attributedTextContentView:(DTAttributedTextContentView *)attributedTextContentView attributedString:(NSAttributedString *)attributedString viewForLink:(NSURL *)url identifier:(NSString *)identifier frame:(CGRect)frame;
 
 
 /** 

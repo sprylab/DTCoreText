@@ -336,16 +336,16 @@
 {
 	_attributedString = string;
 
-	// might need layout for visible custom views
-	[self setNeedsLayout];
-	
 	if (_attributedTextContentView)
 	{
 		// pass it along if contentView already exists
 		_attributedTextContentView.attributedString = string;
-		
-		// this causes a relayout and the resulting notification will allow us to set the frame and contentSize
 	}
+	
+	// might need layout for visible custom views
+	[self setNeedsLayout];
+	
+	[self drawRect:self.bounds];
 }
 
 - (NSAttributedString *)attributedString

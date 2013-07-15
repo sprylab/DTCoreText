@@ -17,8 +17,11 @@ extern NSString *DTLinkButtonDidHighlightNotification;
  
  Multiple parts of the same hyperlink synchronize their looks through the guid.
  */
-@interface DTLinkButton : UIButton 
-
+#if TARGET_OS_IPHONE
+@interface DTLinkButton : UIButton
+#else
+@interface DTLinkButton : NSButton
+#endif
 
 /**
  The URL that this button corresponds to.
