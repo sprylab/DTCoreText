@@ -2358,7 +2358,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "deploymentTarget=$DEPLOYMENT_TARGET\n\nif [ ! -d \"$deploymentTarget\" ]; then\nmkdir \"$deploymentTarget\"\nfi\npwd\nsh ../../buildUniversalLib.sh DTCoreText_lib $LIB_BASE_NAME \"$deploymentTarget\"";
+			shellScript = "deploymentTarget=$DEPLOYMENT_TARGET\n\nif [ ! -d \"$deploymentTarget\" ]; then\nmkdir \"$deploymentTarget\"\nfi\npwd\nsh ../../PurpleTools/buildUniversalLib.sh DTCoreText_lib $LIB_BASE_NAME \"$deploymentTarget\"";
 		};
 		A70F119414863198009202BF /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
