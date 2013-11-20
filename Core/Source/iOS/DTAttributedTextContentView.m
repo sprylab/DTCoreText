@@ -460,8 +460,9 @@ static Class _layerClassToUseForDTAttributedTextContentView = nil;
 	}
 	
 	// need to prevent updating of string and drawing at the same time
-	[theLayoutFrame drawInContext:ctx options:options];
-	
+//	[theLayoutFrame drawInContext:ctx options:options];
+    [theLayoutFrame drawInContext:ctx drawImages:_shouldDrawImages drawLinks:_shouldDrawLinks];
+
 	if (_delegateFlags.delegateSupportsNotificationAfterDrawing)
 	{
 		[_delegate attributedTextContentView:self didDrawLayoutFrame:theLayoutFrame inContext:ctx];
@@ -471,7 +472,9 @@ static Class _layerClassToUseForDTAttributedTextContentView = nil;
 - (void)drawRect:(CGRect)rect
 {
 	CGContextRef context = UIGraphicsGetCurrentContext();
-	[self.layoutFrame drawInContext:context options:DTCoreTextLayoutFrameDrawingDefault];
+//	[self.layoutFrame drawInContext:context options:DTCoreTextLayoutFrameDrawingDefault];
+    [self.layoutFrame drawInContext:context drawImages:YES drawLinks:YES];
+    
 }
 
 - (void)relayoutText
@@ -1022,8 +1025,9 @@ static Class _layerClassToUseForDTAttributedTextContentView = nil;
 	
 	CGContextTranslateCTM(context, -bounds.origin.x, -bounds.origin.y);
 	
-	[self.layoutFrame drawInContext:context options:options];
-	
+//	[self.layoutFrame drawInContext:context options:options];
+    [self.layoutFrame drawInContext:context drawImages:YES drawLinks:YES];
+
 	UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
 	UIGraphicsEndImageContext();
 	
