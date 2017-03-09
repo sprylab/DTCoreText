@@ -6,9 +6,9 @@
 //  Copyright 2011 Drobnik.com. All rights reserved.
 //
 
-#import <SenTestingKit/SenTestingKit.h>
+#import <XCTest/XCTest.h>
 
-@interface NSStringHTMLTest : SenTestCase {
+@interface NSStringHTMLTest : XCTestCase {
 
 }
 

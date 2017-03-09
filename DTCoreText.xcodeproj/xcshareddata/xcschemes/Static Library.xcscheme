@@ -33,7 +33,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "A788CA671486456100E1AFD9"
-               BuildableName = "UnitTest.octest"
+               BuildableName = "UnitTest.xctest"
                BlueprintName = "UnitTest"
                ReferencedContainer = "container:DTCoreText.xcodeproj">
             </BuildableReference>
@@ -44,6 +44,15 @@
             </SkippedTests>
          </TestableReference>
       </Testables>
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "A70F11DD148632CD009202BF"
+            BuildableName = "libDTCoreText.a"
+            BlueprintName = "Static Library"
+            ReferencedContainer = "container:DTCoreText.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
       <AdditionalOptions>
       </AdditionalOptions>
    </TestAction>
