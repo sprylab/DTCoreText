@@ -241,4 +241,35 @@
 	NSRange letterSpacingRange = [html rangeOfString:@"letter-spacing:10px;"];
 	STAssertTrue(letterSpacingRange.location == NSNotFound, @"Letter-spacing missing");
 }
+
+- (void)testAnchor {
+	NSDictionary *options = @{
+							  kOptionRenderLastParagraphWithoutNewlineAsSpan: @(NO),
+							  kOptionDTHTMLEscapeXML: @(YES)
+							  };
+	
+	// ---- test single line anchor ----
+	NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:@"first second third"];
+	[attributedString addAttribute:DTAnchorAttribute value:@"nameValue" range:NSMakeRange(6, 6)]; // word "second"
+	
+	DTHTMLWriter *writer = [[DTHTMLWriter alloc] initWithAttributedString:attributedString CSSPrefix:@"" options:options];
+	
+	NSString *generatedHTMLFragment = [writer HTMLFragment];
+	NSString *expectedHTMLFragment = @"<p><span style=\"color:#000000;\">first </span><a name=\"nameValue\"><span style=\"color:#000000;\">second</span></a><span style=\"color:#000000;\"> third</span></p>\n";
+	
+	STAssertTrue([generatedHTMLFragment isEqualToString:expectedHTMLFragment], @"Strings are not equal %@ %@", expectedHTMLFragment, generatedHTMLFragment);
+	
+	
+	// ---- Test multi line anchor ----
+	attributedString = [[NSMutableAttributedString alloc] initWithString:@"first line\nsecond line\nthird line"];
+	[attributedString addAttribute:DTAnchorAttribute value:@"nameValue" range:NSMakeRange(0, 22)]; // first and second line
+	
+	writer = [[DTHTMLWriter alloc] initWithAttributedString:attributedString CSSPrefix:@"" options:options];
+
+	generatedHTMLFragment = [writer HTMLFragment];
+	expectedHTMLFragment = @"<p><a name=\"nameValue\"><span style=\"color:#000000;\">first line</span></a></p>\n<p><a name=\"nameValue\"><span style=\"color:#000000;\">second line</span></a></p>\n<p><span style=\"color:#000000;\">third line</span></p>\n";
+	
+	STAssertTrue([generatedHTMLFragment isEqualToString:expectedHTMLFragment], @"Strings are not equal %@ %@", expectedHTMLFragment, generatedHTMLFragment);
+}
+
 @end
