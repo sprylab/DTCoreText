@@ -641,7 +641,7 @@ NSString *kOptionDTHTMLEscapeXML = @"DTHTMLEscapeXML";
 			}
 			
 			// check if previous link is over yet
-			if (NSMaxRange(spanRange) >= NSMaxRange(currentLinkRange))
+			if (currentLinkRange.location != NSNotFound && NSMaxRange(spanRange) <= NSMaxRange(currentLinkRange))
 			{
 				isLastPartOfHyperlink = YES;
 			}
