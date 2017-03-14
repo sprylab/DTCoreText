@@ -257,7 +257,7 @@
 	NSString *generatedHTMLFragment = [writer HTMLFragment];
 	NSString *expectedHTMLFragment = @"<p><span style=\"color:#000000;\">first </span><a name=\"nameValue\"><span style=\"color:#000000;\">second</span></a><span style=\"color:#000000;\"> third</span></p>\n";
 	
-	STAssertTrue([generatedHTMLFragment isEqualToString:expectedHTMLFragment], @"Strings are not equal %@ %@", expectedHTMLFragment, generatedHTMLFragment);
+	XCTAssertTrue([generatedHTMLFragment isEqualToString:expectedHTMLFragment], @"Strings are not equal %@ %@", expectedHTMLFragment, generatedHTMLFragment);
 	
 	
 	// ---- Test multi line anchor ----
@@ -269,7 +269,7 @@
 	generatedHTMLFragment = [writer HTMLFragment];
 	expectedHTMLFragment = @"<p><a name=\"nameValue\"><span style=\"color:#000000;\">first line</span></a></p>\n<p><a name=\"nameValue\"><span style=\"color:#000000;\">second line</span></a></p>\n<p><span style=\"color:#000000;\">third line</span></p>\n";
 	
-	STAssertTrue([generatedHTMLFragment isEqualToString:expectedHTMLFragment], @"Strings are not equal %@ %@", expectedHTMLFragment, generatedHTMLFragment);
+	XCTAssertTrue([generatedHTMLFragment isEqualToString:expectedHTMLFragment], @"Strings are not equal %@ %@", expectedHTMLFragment, generatedHTMLFragment);
 }
 
 @end
