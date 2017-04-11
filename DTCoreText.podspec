@@ -3,7 +3,7 @@ Pod::Spec.new do |spec|
   spec.version      = '3.1.0-dev'
 
   spec.license      = 'BSD'
-  spec.source       = { :git => 'https://github.com/artifacts/DTCoreText.git', :tag => spec.version.to_s }
+  spec.source       = { :git => 'https://github.com/sprylab/DTCoreText.git', :tag => spec.version.to_s }
 
   spec.ios.deployment_target = '8.0'
   spec.osx.deployment_target = '10.8'

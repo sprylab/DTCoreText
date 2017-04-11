@@ -577,9 +577,9 @@ NSString *kOptionDTHTMLEscapeXML = @"DTHTMLEscapeXML";
 		__block NSString *plainSubString = nil; // alwas holds the last plain text from enumarated attributes
 		
 		// ----- SPAN enumeration
-		
+
 		[_attributedString enumerateAttributesInRange:paragraphRange options:0 usingBlock:^(NSDictionary *attributes, NSRange spanRange, BOOL *stopEnumerateAttributes) {
-			
+
 			NSURL *spanURL = nil;
 			
 			if([[attributes objectForKey:DTLinkAttribute] isKindOfClass:[NSURL class]]) {
@@ -640,8 +640,8 @@ NSString *kOptionDTHTMLEscapeXML = @"DTHTMLEscapeXML";
 				}];
 			}
 			
-			// check if previous link is over yet
-			if (currentLinkRange.location != NSNotFound && NSMaxRange(spanRange) <= NSMaxRange(currentLinkRange))
+			// check if the current link tag needs to be closed
+			if (currentLinkRange.location != NSNotFound && (NSMaxRange(spanRange) >= MIN(NSMaxRange(currentLinkRange), NSMaxRange(paragraphRange))))
 			{
 				isLastPartOfHyperlink = YES;
 			}
