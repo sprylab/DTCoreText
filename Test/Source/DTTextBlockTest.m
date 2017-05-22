@@ -22,24 +22,24 @@
 	block2.padding = DTEdgeInsetsMake(10, 20, 30, 40);
 	block2.backgroundColor = DTColorCreateWithHTMLName(@"red");
 
-	STAssertTrue([block1 isEqual:block2], @"Both blocks should be equal");
-	STAssertTrue([block1 isEqual:block1], @"Should be true against itself");
+	XCTAssertTrue([block1 isEqual:block2], @"Both blocks should be equal");
+	XCTAssertTrue([block1 isEqual:block1], @"Should be true against itself");
 	
 	// different color
 	block2.backgroundColor = DTColorCreateWithHTMLName(@"blue");
-	STAssertFalse([block1 isEqual:block2], @"same padding different color should be different");
+	XCTAssertFalse([block1 isEqual:block2], @"same padding different color should be different");
 	
-	STAssertFalse([block1 isEqual:nil], @"isEqual:nil should be false");
-	STAssertFalse([block1 isEqual:@"bla"], @"isEqual: to string should be false");
+	XCTAssertFalse([block1 isEqual:nil], @"isEqual:nil should be false");
+	XCTAssertFalse([block1 isEqual:@"bla"], @"isEqual: to string should be false");
 	
 	// exactly same color
 	block2.backgroundColor = block1.backgroundColor;
-	STAssertTrue([block1 isEqual:block2], @"Should be true against with exactly same color");
+	XCTAssertTrue([block1 isEqual:block2], @"Should be true against with exactly same color");
 	
 	// same color different padding
 	block2.padding = DTEdgeInsetsMake(10, 20, 30, 50);
 	block2.backgroundColor = DTColorCreateWithHTMLName(@"red");
-	STAssertFalse([block1 isEqual:block2], @"different padding same color should be different");
+	XCTAssertFalse([block1 isEqual:block2], @"different padding same color should be different");
 }
 
 - (void)testHash
@@ -49,7 +49,7 @@
 	
 	NSUInteger hash = [block1 hash];
 	
-	STAssertEquals(hash, (NSUInteger)201010757, @"hash should be 201010757");
+	XCTAssertEqual(hash, (NSUInteger)201010757, @"hash should be 201010757");
 }
 
 @end

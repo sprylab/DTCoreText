@@ -6,8 +6,8 @@
 //  Copyright (c) 2013 Drobnik.com. All rights reserved.
 //
 
-#import <SenTestingKit/SenTestingKit.h>
+#import <XCTest/XCTest.h>
 
-@interface DTCoreTextParagraphStyleTest : SenTestCase
+@interface DTCoreTextParagraphStyleTest : XCTestCase
 
 @end

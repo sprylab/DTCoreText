@@ -350,7 +350,6 @@
 		A788CA5314863EF100E1AFD9 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A788CA3914863EF100E1AFD9 /* main.m */; };
 		A788CA601486416A00E1AFD9 /* libDTCoreText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A70F11DE148632CD009202BF /* libDTCoreText.a */; };
 		A788CA6C1486456100E1AFD9 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
-		A788CA7C148645A600E1AFD9 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A788CA7B148645A600E1AFD9 /* SenTestingKit.framework */; };
 		A788CA80148647AC00E1AFD9 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765A40DF7441C002DB57D /* CoreGraphics.framework */; };
 		A788CA82148647BC00E1AFD9 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A704C93913901FDB0045CFC6 /* ImageIO.framework */; };
 		A788CA83148647C900E1AFD9 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A73BC42812DA014300F064C6 /* CoreText.framework */; };
@@ -370,7 +369,6 @@
 		A7949A0014C6256B00A8CCDE /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A79499FF14C6256B00A8CCDE /* libxml2.dylib */; };
 		A7949A5014CC44D300A8CCDE /* DTCoreTextConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = A7949A4F14CC44D200A8CCDE /* DTCoreTextConstants.m */; };
 		A7949A5114CC44D300A8CCDE /* DTCoreTextConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = A7949A4F14CC44D200A8CCDE /* DTCoreTextConstants.m */; };
-		A7949A5914CC456000A8CCDE /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A788CA7B148645A600E1AFD9 /* SenTestingKit.framework */; };
 		A7949A8914CC480100A8CCDE /* Alignment.html in Resources */ = {isa = PBXBuildFile; fileRef = A788CA1B14863EF100E1AFD9 /* Alignment.html */; };
 		A7949A8A14CC482F00A8CCDE /* APOD.html in Resources */ = {isa = PBXBuildFile; fileRef = A788CA1C14863EF100E1AFD9 /* APOD.html */; };
 		A7949A8B14CC483400A8CCDE /* CurrentTest.html in Resources */ = {isa = PBXBuildFile; fileRef = A788CA1F14863EF100E1AFD9 /* CurrentTest.html */; };
@@ -1161,8 +1159,7 @@
 		A788CA3914863EF100E1AFD9 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		A788CA5414863F6400E1AFD9 /* DemoApp-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "DemoApp-Info.plist"; sourceTree = "<group>"; };
 		A788CA5514863F6400E1AFD9 /* DemoApp-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "DemoApp-Prefix.pch"; sourceTree = "<group>"; };
-		A788CA681486456100E1AFD9 /* UnitTest.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UnitTest.octest; sourceTree = BUILT_PRODUCTS_DIR; };
-		A788CA7B148645A600E1AFD9 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
+		A788CA681486456100E1AFD9 /* UnitTest.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UnitTest.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A78C241015073BC50045651E /* TextBoxes.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = TextBoxes.html; sourceTree = "<group>"; };
 		A78E3C4F178D674300D17DCD /* DTCoreTextLayoutFrame+Cursor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "DTCoreTextLayoutFrame+Cursor.h"; sourceTree = "<group>"; };
 		A78E3C50178D674300D17DCD /* DTCoreTextLayoutFrame+Cursor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "DTCoreTextLayoutFrame+Cursor.m"; sourceTree = "<group>"; };
@@ -1329,7 +1326,6 @@
 				A79CA82617FC9651001EBA6E /* MobileCoreServices.framework in Frameworks */,
 				A79CA82417FC9648001EBA6E /* UIKit.framework in Frameworks */,
 				A70E630116C254F5009B47BF /* libDTCoreText.a in Frameworks */,
-				A788CA7C148645A600E1AFD9 /* SenTestingKit.framework in Frameworks */,
 				A788CA6C1486456100E1AFD9 /* Foundation.framework in Frameworks */,
 				A788CA80148647AC00E1AFD9 /* CoreGraphics.framework in Frameworks */,
 				A788CA82148647BC00E1AFD9 /* ImageIO.framework in Frameworks */,
@@ -1346,7 +1342,6 @@
 				A76F503D1705ABAC00DF52D5 /* DTCoreText.framework in Frameworks */,
 				A7F5671D14D8469000D1F167 /* Cocoa.framework in Frameworks */,
 				A7C1CC0F14D6CFD5008D6468 /* AppKit.framework in Frameworks */,
-				A7949A5914CC456000A8CCDE /* SenTestingKit.framework in Frameworks */,
 				A7C1CC0D14D6C4F2008D6468 /* libxml2.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1501,7 +1496,7 @@
 				1D6058910D05DD3D006BFB54 /* RTDemoApp.app */,
 				A70F119B14863198009202BF /* DTCoreTextStatic.framework */,
 				A70F11DE148632CD009202BF /* libDTCoreText.a */,
-				A788CA681486456100E1AFD9 /* UnitTest.octest */,
+				A788CA681486456100E1AFD9 /* UnitTest.xctest */,
 				A7949A5814CC456000A8CCDE /* MacUnitTest.octest */,
 				A7F7EFCD1573603100F5A4D0 /* libDTCoreText_no_DTFoundation.a */,
 				E2262DC61638331500BFDAD7 /* DTCoreText.framework */,
@@ -1544,7 +1539,6 @@
 				A75C6C71141798CE00AEE350 /* MobileCoreServices.framework */,
 				A79CA82517FC9651001EBA6E /* MobileCoreServices.framework */,
 				A76E5B4812DD9AF500711782 /* QuartzCore.framework */,
-				A788CA7B148645A600E1AFD9 /* SenTestingKit.framework */,
 				1DF5F4DF0D08C38300B7A737 /* UIKit.framework */,
 				A79CA82317FC9648001EBA6E /* UIKit.framework */,
 				05DDBBE5184654BC00F25A44 /* XCTest.framework */,
@@ -2424,8 +2418,8 @@
 			);
 			name = UnitTest;
 			productName = UnitTests;
-			productReference = A788CA681486456100E1AFD9 /* UnitTest.octest */;
-			productType = "com.apple.product-type.bundle.ocunit-test";
+			productReference = A788CA681486456100E1AFD9 /* UnitTest.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
 		};
 		A7949A5714CC456000A8CCDE /* MacUnitTest */ = {
 			isa = PBXNativeTarget;
@@ -3739,7 +3733,7 @@
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+					"$(inherited)",
 				);
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -3755,7 +3749,6 @@
 				SDKROOT = iphoneos;
 				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
 				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = octest;
 			};
 			name = Debug;
 		};
@@ -3766,7 +3759,7 @@
 				COPY_PHASE_STRIP = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+					"$(inherited)",
 				);
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_PREFIX_HEADER = "Test/UnitTest-Prefix.pch";
@@ -3780,7 +3773,6 @@
 				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				VALIDATE_PRODUCT = YES;
-				WRAPPER_EXTENSION = octest;
 			};
 			name = Release;
 		};
@@ -4013,7 +4005,7 @@
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+					"$(inherited)",
 				);
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -4031,7 +4023,6 @@
 				SDKROOT = iphoneos;
 				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
 				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = octest;
 			};
 			name = Coverage;
 		};
