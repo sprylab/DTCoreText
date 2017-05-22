@@ -16,8 +16,9 @@
 
 #import <Cocoa/Cocoa.h>
 
+#import <DTFoundation/DTWeakSupport.h>
+
 #import "DTCoreTextLayoutFrame.h"
-#import "DTWeakSupport.h"
 #import "DTCompatibility.h"
 
 @class DTMacAttributedTextContentView;
