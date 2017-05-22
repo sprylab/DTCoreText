@@ -11,10 +11,10 @@ Pod::Spec.new do |spec|
   spec.ios.source_files = 'Core/Source/*.{h,m,c}', 'Core/Source/iOS/*.{h,m,c}'
   spec.osx.source_files = 'Core/Source/*.{h,m,c}', 'Core/Source/OSX/*.{h,m,c}', 'Core/Source/CrossPlatform/*.{h,m,c}'
 
-  spec.ios.dependency 'DTFoundation/UIKit', '~>2.0.0'
+  spec.ios.dependency 'DTFoundation/UIKit', '2.2.0-dev'
 
-  spec.dependency 'DTFoundation/Core', '~>2.0.0'
-  spec.dependency 'DTFoundation/DTHTMLParser', '~>2.0.0'
+  spec.dependency 'DTFoundation/Core', '2.2.0-dev'
+  spec.dependency 'DTFoundation/DTHTMLParser', '2.2.0-dev'
 
   spec.ios.frameworks   = 'MediaPlayer', 'QuartzCore', 'CoreText', 'CoreGraphics', 'ImageIO'
   spec.osx.frameworks   = 'QuartzCore', 'CoreText', 'CoreGraphics', 'ImageIO', 'AppKit'
