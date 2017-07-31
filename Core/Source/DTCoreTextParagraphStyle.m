@@ -7,9 +7,11 @@
 //
 
 #import "DTCoreTextParagraphStyle.h"
+
+#import <DTFoundation/DTWeakSupport.h>
+
 #import "DTTextBlock.h"
 #import "DTCSSListStyle.h"
-#import "DTWeakSupport.h"
 #import "DTCoreTextFunctions.h"
 
 @implementation DTCoreTextParagraphStyle
