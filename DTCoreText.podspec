@@ -5,7 +5,7 @@ Pod::Spec.new do |spec|
   spec.license      = 'BSD'
   spec.source       = { :git => 'https://github.com/sprylab/DTCoreText.git', :tag => spec.version.to_s }
 
-  spec.ios.deployment_target = '9.0'
+  spec.ios.deployment_target = '11.0'
   spec.osx.deployment_target = '10.8'
 
   spec.ios.source_files = 'Core/Source/*.{h,m,c}', 'Core/Source/iOS/*.{h,m,c}'
